@@ -1,32 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SiteHeader from "./site-header";
+import GlobeStudy from "./globe-study";
+import FooterHands from "./footer-hands";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    number: "001.", japanese: "物語と個性", title: "Brand Positioning & Identity",
-    description: "We define how your brand looks, speaks, and is remembered. From positioning and visual identity to scalable design systems, every element is built to create recognition and consistency.",
-    price: "$4500", tags: ["Visual identity", "Typography", "Branding", "Logo design", "Packaging design", "Rebranding"],
-    images: ["/images/service-1a.png", "/images/service-1b.png"], alt: ["The Neiden digital clock design", "A hand holding a phone for a product interface"]
+    number: "001.", japanese: "暗号化と保護", title: "Private Connection & Encryption",
+    description: "Protect your connection with AES-256 encryption. Traverse VPN helps shield your data on public Wi-Fi and keeps your browsing more private.",
+    price: "Included", tags: ["AES-256", "IP masking", "DNS leak protection", "Kill Switch", "No WebRTC leaks", "Split tunneling"],
+    images: ["/images/vpn/photos/cafe-laptop.jpg", "/images/vpn/photos/night-phone.jpg"], alt: ["Traveler using a laptop in a café", "Person using a phone in a city at night"]
   },
   {
-    number: "002.", japanese: "体験と設計", title: "Product Experience Design",
-    description: "We design websites, platforms, and digital products that balance usability, performance, and visual clarity. Every interaction is shaped to help users move faster and make better decisions.",
-    price: "$3500", tags: ["UX Design", "UI Systems", "Product Strategy", "Wireframing", "Prototyping", "Design Audits"],
-    images: ["/images/service-2a.png", "/images/service-2b.png"], alt: ["Editorial campaign visual", "Digital product brand image"]
+    number: "002.", japanese: "世界中の接続", title: "Fast Global Server Access",
+    description: "Choose from 50+ fast servers to reach content around the world. Enjoy unlimited bandwidth and a connection built for everyday browsing.",
+    price: "50+ servers", tags: ["Global locations", "Unlimited bandwidth", "Up to 1 Gbps", "No throttling", "Streaming", "Low latency"],
+    images: ["/images/vpn/photos/airport-work.jpg", "/images/vpn/photos/city-phone.jpg"], alt: ["Traveler working at an airport gate", "Traveler using a phone on a city street"]
   },
   {
-    number: "003.", japanese: "影響と発信", title: "Social Presence & Content",
-    description: "We create content systems that keep brands active, consistent, and recognizable across social platforms. From strategy to execution, every touchpoint supports long-term brand growth.",
-    price: "$2500", tags: ["Content Strategy", "Creative Campaigns", "Art Direction", "Community Building", "Brand Content", "Social Media"],
-    images: ["/images/service-3a.png", "/images/service-3b.png"], alt: ["Creative content campaign", "Social media content campaign"]
+    number: "003.", japanese: "Wi-Fiの保護", title: "Safer Public Wi-Fi",
+    description: "Connect with more confidence at airports, cafés, hotels, and other shared networks. Automatic protection helps keep your data private when you connect.",
+    price: "Every network", tags: ["Auto-connect", "Wi-Fi protection", "Encrypted traffic", "Hide your IP", "Private browsing", "Travel ready"],
+    images: ["/images/vpn/photos/cafe-collaboration.jpg", "/images/vpn/photos/cafe-phone.jpg"], alt: ["People using laptops in a café", "Phone in use in a public indoor space"]
   },
   {
-    number: "004.", japanese: "検索と成長", title: "Organic Growth & Visibility",
-    description: "We increase visibility where it matters most. Through SEO, content strategy, and technical improvements, we help brands attract the right audience and create lasting growth.",
-    price: "$6000", tags: ["SEO Strategy", "Technical SEO", "Content Strategy", "Keyword Research", "Site Performance", "Search Analytics"],
-    images: ["/images/service-4a.png", "/images/service-4b.png"], alt: ["Organic search visibility report", "Search growth overview"]
+    number: "004.", japanese: "ログを残さない", title: "No-Logs Privacy",
+    description: "Traverse VPN says it does not collect or share your browsing activity. Open-source protocols and a published no-logs policy help make its approach easier to review.",
+    price: "Privacy first", tags: ["No-logs policy", "OpenVPN", "WireGuard", "Independent audits", "No data sharing", "Zero knowledge"],
+    images: ["/images/vpn/photos/night-phone.jpg", "/images/vpn/photos/travel-desk.jpg"], alt: ["Phone in a city at night", "Travel workspace with a laptop and passport"]
   },
 ];
 
@@ -35,10 +42,20 @@ function GridLines() {
 }
 
 function SectionLabel({ children, japanese }: { children: string; japanese: string }) {
-  return <div className="section-label"><span className="label-mark" aria-hidden="true"><i/><i/><i/><i/></span><span>[</span><b>ND®</b><i>—</i><b>{children} /</b><span className="jp">{japanese}</span><span>]</span></div>;
+  return <div className="section-label"><span className="label-mark" aria-hidden="true"><i/><i/><i/><i/></span><span>[</span><b>VPN</b><i>—</i><b>{children} /</b>{japanese && <span className="jp">{japanese}</span>}<span>]</span></div>;
 }
 
 function Plus() { return <span className="plus" aria-hidden="true">+</span>; }
+
+function ScrollRevealWords({ text }: { text: string }) {
+  return <>{text.split(/(\s+)/).map((part, index) => part.trim()
+    ? <span className="about-reveal-word" key={index}>{part}</span>
+    : part)}</>;
+}
+
+function ScrollRevealParagraph({ text }: { text: string }) {
+  return <p><ScrollRevealWords text={text}/></p>;
+}
 
 const bottomBlurLayers = [
   { blur: "0.3px", from: "0%", to: "8.75%" },
@@ -53,118 +70,351 @@ const bottomBlurLayers = [
 
 const pricingPlans = [
   {
-    audience: "For growing teams", name: "Studio", monthly: "49", yearly: "41", plan: "Basic", seats: "2", image: "/images/pricing/studio.png",
-    features: ["Smart Deployment", "Basic Monitoring", "Core Security", "Email Support", "5 team seats", "Basic Analytics", "Standard API"],
+    audience: "Quick protection for a short trip", name: "Weekly", monthly: "1.49", yearly: "1.49", plan: "Weekly", seats: "All devices", image: "/images/vpn/photos/city-phone.jpg", save: "One week of protection",
+    features: ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"],
   },
   {
-    audience: "For scaling businesses", name: "Scale", monthly: "89", yearly: "75", plan: "Advanced", seats: "6", image: "/images/pricing/scale.png",
-    features: ["All Studio features", "AI optimization", "Advanced monitoring", "Enhanced security", "24/7 support", "Auto-scaling", "Full analytics", "Priority API"],
+    audience: "Flexible month-to-month privacy", name: "Monthly", monthly: "3.99", yearly: "1.99", plan: "Monthly", seats: "All devices", image: "/images/vpn/photos/cafe-laptop.jpg", save: "Cancel anytime",
+    features: ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"],
   },
   {
-    audience: "For large organizations", name: "Supreme", monthly: "249", yearly: "209", plan: "Enterprise", seats: "100", image: "/images/pricing/supreme.png",
-    features: ["All Scale features", "Dedicated support", "Private hosting", "Custom security", "Training included", "Priority features", "Custom reporting", "Enterprise SLA"],
+    audience: "Best value for year-round security", name: "Yearly", monthly: "3.99", yearly: "1.99", plan: "Annual", seats: "All devices", image: "/images/vpn/photos/airport-work.jpg", save: "Save 67% with annual billing",
+    features: ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"],
   },
 ];
 
+const journeySteps = [
+  { year: "STEP 01", title: "Choose your\nTraverse plan", description: "Pick weekly, monthly, or annual protection for the way you use the internet.", image: "/images/vpn/photos/cafe-laptop.jpg" },
+  { year: "STEP 02", title: "Connect to a\nfast server", description: "Choose a location from 50+ fast servers and connect with one tap.", image: "/images/vpn/photos/airport-work.jpg" },
+  { year: "STEP 03", title: "Browse with\nmore privacy", description: "Your IP is masked and your internet traffic is protected with encryption.", image: "/images/vpn/photos/city-phone.jpg" },
+  { year: "STAY PROTECTED", title: "Carry privacy\nwith you", description: "Use Traverse VPN across your devices at home, at work, and on the go.", image: "/images/vpn/photos/cafe-collaboration.jpg" },
+];
+
+function JourneySection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activeStep, setActiveStep] = useState(0);
+  const [progress, setProgress] = useState("316px");
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        const mobile = window.matchMedia("(max-width: 900px)").matches;
+        if (mobile) {
+          const steps = [...section.querySelectorAll<HTMLElement>(".journey-step")];
+          const center = window.innerHeight * .46;
+          let nearest = 0;
+          let distance = Number.POSITIVE_INFINITY;
+          steps.forEach((step,index) => {
+            const rect = step.getBoundingClientRect();
+            const nextDistance = Math.abs(rect.top + Math.min(rect.height,260) / 2 - center);
+            if (nextDistance < distance) { nearest=index; distance=nextDistance; }
+          });
+          setActiveStep(nearest);
+          setProgress(`${nearest / (journeySteps.length - 1) * 100}%`);
+          return;
+        }
+        const sectionTop = section.getBoundingClientRect().top;
+        const distanceFromStart = window.innerHeight * .47 - (sectionTop + 150);
+        setActiveStep(Math.max(0,Math.min(journeySteps.length - 1,Math.floor(distanceFromStart / 316))));
+        setProgress(`${Math.max(0,Math.min(316 * (journeySteps.length - 1),distanceFromStart + 43))}px`);
+      });
+    };
+    update();
+    window.addEventListener("scroll",update,{passive:true});
+    window.addEventListener("resize",update);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll",update); window.removeEventListener("resize",update); };
+  }, []);
+  return <section className="journey-section section" id="journey" ref={sectionRef}>
+    <GridLines/><div className="journey-grid">
+      <div className="journey-left"><div className="journey-intro"><SectionLabel japanese="ご利用の流れ">GETTING STARTED</SectionLabel><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img src="/images/journey/erik.png" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
+      <div className="journey-visual" aria-hidden="true"><div className="journey-image-frame">{journeySteps.map((step,index)=><img key={step.year} className={activeStep===index?"active":""} src={step.image} alt=""/>)}</div></div>
+      <div className="journey-timeline" style={{"--journey-progress":progress} as CSSProperties}><ol>{journeySteps.map((step,index)=><li className={`journey-step${activeStep===index?" active":""}`} key={step.year}><span className="journey-node" aria-hidden="true"/><img className="journey-mobile-image" src={step.image} alt=""/><span className="journey-year">{step.year}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div>
+    </div>
+  </section>;
+}
+
+const clientTestimonials = [
+  { number:"01", type:"PUBLIC WI-FI", quote:"Sample customer feedback: Traverse helps protect my connection when I’m using Wi-Fi at cafés, airports, and hotels.", role:"VPN user", accent:"rose" },
+  { number:"02", type:"GLOBAL ACCESS", quote:"Sample customer feedback: Switching server locations is simple, and I can browse while travelling with more peace of mind.", role:"Frequent traveller", accent:"ink" },
+  { number:"03", type:"ONLINE PRIVACY", quote:"Sample customer feedback: I wanted an easy way to mask my IP and add encryption to my everyday internet connection.", role:"Privacy minded user", accent:"silver" },
+];
+
+function ProjectStories() {
+  return <section className="project-stories section" id="stories"><GridLines/><div className="stories-inner"><div className="stories-heading"><div><SectionLabel japanese="利用者の声">VPN USER STORIES</SectionLabel><h2>Privacy in<br/>their words.</h2></div><div className="stories-deck"><p>Hear how a VPN can help people feel more private on public Wi-Fi, while travelling, and in everyday browsing. These are sample stories; replace them with approved customer feedback.</p><span>SAMPLE TESTIMONIALS · REPLACE BEFORE PUBLISHING</span></div></div>
+    <div className="story-cards">{clientTestimonials.map(story=><article className={`story-card testimonial-${story.accent}`} key={story.number}><div className="story-meta"><span>{story.number} / {story.type}</span><span>SAMPLE</span></div><span className="testimonial-mark" aria-hidden="true">“</span><blockquote>{story.quote}</blockquote><div className="story-attribution"><span className="story-avatar" aria-hidden="true">{story.number}</span><span><b>Sample VPN user</b><small>{story.role} · Sample story</small></span><i>PREVIEW</i></div></article>)}</div><div className="stories-foot"><span>HAVE A STORY TO SHARE?</span><a href="https://traversevpn.com/">Explore Traverse VPN <b aria-hidden="true">↗</b></a></div>
+  </div></section>;
+}
+
+const projectAnswers = [
+  { question:"What does a VPN do?", answer:"A VPN creates an encrypted connection between your device and a VPN server. It can help protect your traffic on shared networks and mask your IP address from the sites you visit." },
+  { question:"Can I use Traverse on public Wi-Fi?", answer:"Yes. A VPN can add encryption when you connect through shared Wi-Fi in places such as cafés, hotels, and airports. Keep your device and apps updated as well." },
+  { question:"Which devices can I use?", answer:"Traverse VPN supports the devices and platforms listed on its official website and app listings. Check those listings for current compatibility and setup instructions." },
+  { question:"Does Traverse VPN keep activity logs?", answer:"Traverse describes its service as no-logs. Review the current privacy policy for details about what data is collected to operate the service." },
+  { question:"How much does Traverse VPN cost?", answer:"Plans include weekly, monthly, and annual options. The current listed prices are $1.49 per week, $3.99 per month, or $1.99 per month with annual billing; confirm the price in the official checkout before subscribing." },
+];
+
+function ProjectAnswers() {
+  return <section className="project-answers section" id="faqs"><GridLines/><div className="answers-layout"><div className="answers-aside"><SectionLabel japanese="よくある質問">VPN FAQS</SectionLabel><h2>Good to<br/>know.</h2><p>Quick answers about VPN privacy, connections, devices, and Traverse plans.</p><div className="answers-contact"><span>MORE ABOUT TRAVERSE?</span><a href="https://traversevpn.com/">Visit Traverse VPN <b aria-hidden="true">↗</b></a></div></div><div className="answers-list">{projectAnswers.map((item,index)=><details className="answer-item" key={item.question} open={index===0}><summary><span className="answer-number">{String(index+1).padStart(2,"0")}</span><span className="answer-question">{item.question}</span><i aria-hidden="true"/></summary><p>{item.answer}</p></details>)}</div></div></section>;
+}
+
 export default function Home() {
   const [yearlyPlans, setYearlyPlans] = useState<string[]>([]);
-  return <main>
+  const mainRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
+  const servicesRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false });
+    const updateScrollTrigger = () => ScrollTrigger.update();
+    const raf = (time: number) => lenis.raf(time * 1000);
+    lenis.on("scroll", updateScrollTrigger);
+    gsap.ticker.add(raf);
+    gsap.ticker.lagSmoothing(0);
+    return () => {
+      gsap.ticker.remove(raf);
+      gsap.ticker.lagSmoothing(500, 33);
+      lenis.off("scroll", updateScrollTrigger);
+      lenis.destroy();
+    };
+  }, []);
+  useEffect(() => {
+    const section = aboutRef.current;
+    const main = mainRef.current;
+    if (!section || !main || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    main.classList.add("gsap-about-motion-ready");
+    const context = gsap.context(() => {
+      const headingWords = section.querySelectorAll<HTMLElement>(".about-heading h2 .about-reveal-word");
+      const paragraphWords = section.querySelectorAll<HTMLElement>(".about-quote .about-reveal-word");
+
+      if (headingWords.length) gsap.to(headingWords, {
+        opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45,
+        stagger: { each: 0.14 }, ease: "none",
+        scrollTrigger: {
+          trigger: section.querySelector(".about-heading h2"),
+          start: "top 85%", end: "bottom 38%", scrub: 0.5, invalidateOnRefresh: true,
+        },
+      });
+
+      if (paragraphWords.length) gsap.to(paragraphWords, {
+        opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5,
+        stagger: { each: 0.018 }, ease: "none",
+        scrollTrigger: {
+          trigger: section.querySelector(".about-quote"),
+          start: "top 92%", end: "bottom 18%", scrub: 0.8, invalidateOnRefresh: true,
+        },
+      });
+    }, section);
+    return () => { context.revert(); main.classList.remove("gsap-about-motion-ready"); };
+  }, []);
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const context = gsap.context(() => {
+      const header = main.querySelector(".site-header");
+      if (header) gsap.fromTo(header.querySelectorAll(".brand, .desktop-nav a, .header-cta, .menu-button"),
+        { autoAlpha: 0, y: -14 },
+        { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07, ease: "power2.out", delay: 0.1 });
+      const hero = main.querySelector(".hero-reference");
+      if (hero) {
+        const intro = hero.querySelectorAll(".ref-hint, .ref-announcement, .ref-copy h1, .ref-copy > p, .ref-actions > *, .ref-bottom-left > *, .ref-feature-pills > *, .ref-bottom-right > *");
+        gsap.fromTo(intro, { autoAlpha: 0, y: 26, filter: "blur(8px)" }, {
+          autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 1.05,
+          stagger: { each: 0.09, from: "start" }, ease: "power3.out", delay: 0.15,
+        });
+        gsap.fromTo(hero.querySelector(".hero-globe"), { autoAlpha: 0, y: 54, xPercent: -50, scale: 0.94 }, {
+          autoAlpha: 1, y: 0, xPercent: -50, scale: 1, duration: 1.5, ease: "power3.out", delay: 0.25,
+        });
+      }
+
+      const about = main.querySelector(".about");
+      if (about) {
+        const items = about.querySelectorAll<HTMLElement>(".about-projects, .about-heading .section-label, .about-meta");
+        gsap.fromTo(items, { autoAlpha: 0, y: 22, filter: "blur(6px)" }, {
+          autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.9,
+          stagger: 0.12, ease: "power3.out",
+          scrollTrigger: { trigger: about, start: "top 72%", once: true },
+        });
+        gsap.fromTo(about.querySelectorAll<HTMLElement>(".about-left, .about-right"), { autoAlpha: 0, filter: "blur(8px)" }, {
+          autoAlpha: 1, filter: "blur(0px)", duration: 1.2, stagger: 0.16, ease: "power2.out",
+          scrollTrigger: { trigger: about, start: "top 72%", once: true },
+        });
+      }
+
+      const services = main.querySelector(".services");
+      if (services) {
+        const asideItems = services.querySelectorAll<HTMLElement>(".services-aside .section-label, .services-intro h2 span, .services-intro p, .scope-cta > *");
+        gsap.fromTo(asideItems, { autoAlpha: 0, y: 28, filter: "blur(6px)" }, {
+          autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.85,
+          stagger: 0.1, ease: "power3.out",
+          scrollTrigger: { trigger: services, start: "top 72%", once: true },
+        });
+        services.querySelectorAll<HTMLElement>(".service").forEach((service) => {
+          const items = service.querySelectorAll<HTMLElement>(".service-head > span, .service-head h3, .service-images img, .service-body > div:first-child, .service-body .tags");
+          gsap.fromTo(items, { autoAlpha: 0, y: 24, filter: "blur(5px)", scale: 0.985 }, {
+            autoAlpha: 1, y: 0, filter: "blur(0px)", scale: 1, duration: 0.8,
+            stagger: 0.08, ease: "power3.out",
+            scrollTrigger: { trigger: service, start: "top 78%", once: true },
+          });
+        });
+        gsap.fromTo(services.querySelectorAll<HTMLElement>(".availability > *"), { autoAlpha: 0, y: 14 }, {
+          autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power2.out",
+          scrollTrigger: { trigger: services, start: "bottom 80%", once: true },
+        });
+      }
+
+      const reveals = [
+        [".features", ".features-intro .section-label, .features-intro p, .features-heading > h2, .feature-people, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
+        [".platform-pricing", ".platform-pricing-title > *, .platform-price-row, .platform-enterprise"],
+        [".journey-section", ".journey-intro > *, .journey-quote > *, .journey-visual, .journey-step"],
+        [".project-stories", ".stories-heading .section-label, .stories-heading h2, .stories-deck > *, .story-card, .stories-foot > *"],
+        [".project-answers", ".answers-aside .section-label, .answers-aside h2, .answers-aside > p, .answers-contact > *, .answer-item summary, .answer-item > p"],
+        [".visuvate-footer", ".visuvate-footer-top > *, .visuvate-social-grid > *, .visuvate-footer-group > *, .visuvate-copyright"],
+      ];
+
+      reveals.forEach(([sectionSelector, itemSelector]) => {
+        const section = main.querySelector(sectionSelector);
+        const items = section?.querySelectorAll<HTMLElement>(itemSelector);
+        if (!section || !items?.length) return;
+        gsap.fromTo(items, { autoAlpha: 0, y: 30, filter: "blur(5px)" }, {
+          autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.85,
+          stagger: { each: 0.1, from: "start" }, ease: "power3.out",
+          scrollTrigger: { trigger: section, start: "top 78%", once: true },
+        });
+      });
+    }, main);
+
+    return () => context.revert();
+  }, []);
+  useEffect(() => {
+    const main=mainRef.current, about=aboutRef.current;
+    if(!main||!about)return;
+    let frame=0;
+    const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateParallax=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{if(reducedMotion.matches)return;const rect=about.getBoundingClientRect();const progress=Math.max(0,Math.min(1,(window.innerHeight-rect.top)/(window.innerHeight+rect.height)));const centered=progress-.46;const mobile=window.matchMedia("(max-width: 900px)").matches;about.querySelector<HTMLElement>(".about-left")?.style.setProperty("--about-parallax-y",`${-centered*(mobile?30:175)}px`);about.querySelector<HTMLElement>(".about-right")?.style.setProperty("--about-parallax-y",`${-centered*(mobile?60:500)}px`)});};
+    updateParallax();window.addEventListener("scroll",updateParallax,{passive:true});window.addEventListener("resize",updateParallax);
+    return()=>{cancelAnimationFrame(frame);window.removeEventListener("scroll",updateParallax);window.removeEventListener("resize",updateParallax)};
+  },[]);
+  useEffect(() => {
+    const footer=document.querySelector(".visuvate-footer");
+    if(!footer)return;
+    const observer=new IntersectionObserver(([entry])=>document.body.classList.toggle("visuvate-footer-in-view",entry.isIntersecting),{threshold:.02});
+    observer.observe(footer);
+    return()=>{observer.disconnect();document.body.classList.remove("visuvate-footer-in-view")};
+  },[]);
+  useEffect(() => {
+    const hero=document.querySelector(".hero-reference");
+    if(!hero)return;
+    const observer=new IntersectionObserver(([entry])=>document.body.classList.toggle("hero-in-view",entry.isIntersecting),{threshold:.01});
+    observer.observe(hero);
+    return()=>{observer.disconnect();document.body.classList.remove("hero-in-view")};
+  },[]);
+  return <main ref={mainRef}>
     <SiteHeader />
-    <section className="hero" id="home">
-      <video className="hero-video" autoPlay muted loop playsInline aria-hidden="true"><source src="/videos/hero-background.mp4" type="video/mp4"/></video>
-      <div className="hero-shade" aria-hidden="true"/><GridLines/>
-      <div className="hero-top"><span>2019–26©</span><div>PROJECTS FOR <b>MAY</b> <i>▮▮▮▮</i> <span>3 LEFT</span></div></div>
-      <div className="hero-inner">
-        <div className="offer-grid">
-          <div><span>01.</span><b>WEB DESIGN & BRANDING</b></div>
-          <div><span>02.</span><b>SOCIAL PRESENCE & CONTENT</b></div>
-          <div><span>03.</span><b>ORGANIC GROWTH & VISIBILITY</b></div>
-        </div>
-        <div className="hero-title-wrap"><h1>ñeiden</h1><p className="scribble">less noise. more direction.</p></div>
-        <div className="hero-bottom">
-          <div className="hero-action"><p>We help brands make better decisions, build stronger products, and move forward with confidence.</p><a className="project-button" href="mailto:hello@neiden.project"><span>START A PROJECT</span><Plus/></a></div>
-          <div className="proof-row"><div className="avatar-stack"><img src="/images/client-1.png" alt="Client"/><img src="/images/client-2.png" alt="Client"/><img src="/images/client-3.png" alt="Client"/><img src="/images/client-4.png" alt="Client"/><span>80+</span></div><div className="rating"><div className="stars">•••••</div><div><b>4.9/5</b><small>BASED ON <strong>361 REVIEWS</strong></small></div></div></div>
-        </div>
+    <section className="hero hero-reference" id="home">
+      <div className="hero-globe" aria-hidden="true"><GlobeStudy style={{ width: "100%", height: "100%" }} /></div>
+      <p className="ref-hint"><i aria-hidden="true"/> MOVE FREELY · STAY PRIVATE</p>
+      <div className="ref-announcement"><i aria-hidden="true"/> PRIVATE BY DESIGN <span>·</span> ONE TAP TO CONNECT</div>
+      <div className="ref-copy">
+        <h1>Browse freely<br/>on any <mark>network.</mark></h1>
+        <p>Traverse VPN adds a layer of protection on public Wi-Fi, masks your IP, and helps keep your browsing private at home, while travelling, and wherever you connect.</p>
+        <div className="ref-actions"><a className="ref-button ref-button-primary" href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse VPN <span aria-hidden="true">↗</span></a><a className="ref-button ref-button-secondary" href="#services">Explore protection <span aria-hidden="true">↗</span></a></div>
       </div>
-      <div className="social-links"><span>𝕏</span><span>◎</span><span>◉</span><span>Bē</span><small>STAY<br/><b>CONNECTED</b></small></div>
-      <div className="client-logos" aria-label="Selected clients"><span>Clandestine</span><span>◉ Ephemeral</span><span>◈ Frequencii</span><span>G Goodwell</span><span>◉ Perception</span></div>
+      <div className="ref-bottom-left"><span>PRIVATE CONNECTIONS, EVERYWHERE</span><strong>1M<sup>+</sup></strong><small>PEOPLE PROTECTED WORLDWIDE</small></div>
+      <div className="ref-feature-pills" aria-label="VPN features"><span><i>01</i> AES-256</span><span><i>02</i> IP MASKING</span><span><i>03</i> NO LOGS</span><span><i>04</i> GLOBAL SERVERS</span></div>
+      <div className="ref-bottom-right"><div className="ref-status-dots" aria-hidden="true"><i/><i/><i/><i/></div><strong>50+</strong><span>FAST SERVER LOCATIONS</span></div>
     </section>
     <div className="bottom-glass-bar" aria-hidden="true"><div className="bottom-glass-layers">{bottomBlurLayers.map((layer) => <div key={layer.blur} style={{ backdropFilter: `blur(${layer.blur}) saturate(120%)`, WebkitBackdropFilter: `blur(${layer.blur}) saturate(120%)`, maskImage: `linear-gradient(to bottom, transparent 0%, transparent ${layer.from}, black ${layer.to}, black 100%)`, WebkitMaskImage: `linear-gradient(to bottom, transparent 0%, transparent ${layer.from}, black ${layer.to}, black 100%)` }} />)}</div></div>
-    <a className="template-tag" href="#services">GET NEIDEN® <span>FROM $99</span></a>
 
-    <section className="about section" id="about">
+    <section className="about section" id="about" ref={aboutRef}>
       <GridLines/>
-      <div className="about-projects">18+ PROJECTS</div>
-      <div className="about-images"><img className="about-left" src="/images/about-left.png" alt="Black and white editorial portrait"/><img className="about-right" src="/images/about-right.png" alt="Colorful fashion editorial portrait"/></div>
+      <div className="about-projects">1M+ USERS</div>
+      <div className="about-images"><img className="about-left" src="/images/vpn/photos/airport-work.jpg" alt="Traveler working on a laptop at the airport"/><img className="about-right" src="/images/vpn/photos/city-phone.jpg" alt="Traveler using a phone in the city at night"/></div>
       <div className="about-heading">
-        <SectionLabel japanese="原点と理念">WHO WE ARE</SectionLabel>
-        <h2>We are an international studio<br className="desktop-break"/> collective — that helps brands craft<br className="desktop-break"/> unique digital experiences.</h2>
+        <SectionLabel japanese="">WHY TRAVERSE</SectionLabel>
+        <h2><ScrollRevealWords text="Private connections"/><br className="desktop-break"/> <ScrollRevealWords text="for everyday browsing,"/><br className="desktop-break"/> <ScrollRevealWords text="wherever life takes you."/></h2>
       </div>
-      <div className="about-meta">EST. 2019</div>
-      <div className="about-quote"><p>Great design is rarely about adding more. It’s about understanding what matters, removing what doesn’t, and creating experiences that feel effortless for the people who use them.</p><div className="person"><img src="/images/lars.png" alt="Lars Nyström"/><div><strong>Lars Nyström</strong><span>Head of Strategy at<br/><b>Neiden®</b></span></div></div></div>
+      <div className="about-meta">PRIVATE BY DESIGN</div>
+      <div className="about-quote"><ScrollRevealParagraph text="Traverse VPN helps keep your connection private wherever you browse. Strong encryption and IP masking add protection on public Wi-Fi, at home, and while travelling. Connect with one tap and choose from fast servers around the world."/></div>
     </section>
 
-    <section className="services section" id="services">
+    <section className="services section" id="services" ref={servicesRef}>
       <GridLines/>
-      <aside className="services-aside"><SectionLabel japanese="思想と実行">SERVICES</SectionLabel><div className="services-intro"><h2>What<br/>We Build</h2><p>Four core disciplines. One goal: helping brands communicate, grow, and stay memorable.</p></div><div className="scope-cta"><b>BEYOND STANDARD PROJECT SCOPE</b><p>Made for different. Built together.</p><a className="project-button" href="mailto:hello@neiden.project"><span>DISCUSS YOUR PROJECT</span><Plus/></a></div></aside>
+      <aside className="services-aside"><SectionLabel japanese="VPNの機能">VPN FEATURES</SectionLabel><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div><div className="scope-cta"><b>50+ FAST SERVERS WORLDWIDE</b><p>Private browsing, wherever you connect.</p><a className="project-button" href="https://links.traversevpn.com/s/Ugp0lRJV"><span>GET TRAVERSE VPN</span><Plus/></a></div></aside>
       <div className="service-list">{services.map((service) => <article className="service" key={service.number}>
         <div className="service-head"><span>{service.number} / <i>{service.japanese}</i></span><h3>{service.title}</h3></div>
         <div className="service-images">{service.images.map((image, index) => <img key={image} src={image} alt={service.alt[index]}/>)}</div>
         <div className="service-body"><div><p>{service.description}</p><div className="service-price">STARTING FROM <b>{service.price}</b></div></div><div className="tags">{service.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
       </article>)}</div>
-      <div className="availability"><span>NOW BOOKING <b>MAY</b></span><span>DELIVERY <b>2–4 WEEKS</b></span></div>
+      <div className="availability"><span>STRONG <b>AES-256</b></span><span>BUILT FOR <b>YOUR PRIVACY</b></span></div>
     </section>
 
     <section className="features section" id="how-we-work">
       <GridLines />
       <div className="features-heading">
-        <div className="features-intro"><SectionLabel japanese="特徴と強み">FEATURES</SectionLabel><p>A closer look at the thinking, experience, and processes that shape the work we deliver.</p></div>
-        <h2>How We Work</h2>
+        <div className="features-intro"><SectionLabel japanese="特徴と強み">VPN PROTECTION</SectionLabel><p>A closer look at how Traverse helps protect your connection, mask your IP, and browse with more privacy.</p></div>
+        <h2>How Traverse Protects You</h2>
       </div>
       <div className="features-cards">
         <article className="feature-copy">
-          <div className="feature-people"><b>ñeiden<sup>®</sup></b><div>{[1,2,3,4].map(n=><img key={n} src={`/images/features/team-${n}.png`} alt="Neiden team member"/>)}</div></div>
-          <div className="feature-copy-bottom"><h3>Turning complexity into quality</h3><p>We simplify difficult decisions, connect fragmented workflows, and turn ambitious ideas into dependable systems.</p><ul><li><span>✓</span>Strategy that guides decisions</li><li><span>✓</span><details><summary>Design that reduces friction <i>ⓘ</i></summary><p>We design systems, interfaces, and workflows that remove unnecessary steps, reduce confusion, and help teams move faster with less effort.</p></details></li><li><span>✓</span>Systems that actually deliver</li></ul></div>
+          <div className="feature-people"><b>Traverse VPN</b><div>{[1,2,3,4].map(n=><img key={n} src={`/images/features/team-${n}.png`} alt=""/>)}</div></div>
+          <div className="feature-copy-bottom"><h3>Privacy made practical</h3><p>Encrypt your traffic, mask your IP address, and connect with greater confidence on networks you don’t control.</p><ul><li><span>✓</span>AES-256 encrypted connection</li><li><span>✓</span><details><summary>Protection for public Wi-Fi <i>ⓘ</i></summary><p>Encryption can help protect your internet traffic when you use shared networks in cafés, hotels, airports, and other public places.</p></details></li><li><span>✓</span>Fast servers around the world</li></ul></div>
         </article>
-        <article className="feature-visual" aria-label="Neiden product metrics"><img className="feature-phone" src="/images/features/phone-card.png" alt="Hand holding a Neiden phone with a rising red graph"/>
-          <div className="metric metric-retention"><span className="metric-icon red"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 19v-1a6 6 0 0 1 12 0v1zM16 5a3 3 0 0 1 0 6M18 14a4 4 0 0 1 3 4v1h-3"/></svg></span><span><b>95%</b><small>Client retention</small></span></div>
-          <div className="metric metric-response"><span className="metric-icon dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Response Time <i></i></b><small>Under 2 hours</small></span></div>
-          <div className="metric metric-conversion"><span className="metric-icon black"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 6-6 4 3 7-8M14 6h6v6"/></svg></span><span><b>+68–72%</b><small>Conversion lift</small></span></div>
+        <article className="feature-visual" aria-label="Traverse VPN privacy features"><img className="feature-phone" src="/images/vpn/photos/cafe-phone.jpg" alt="Phone in use in a public indoor space"/>
+          <div className="metric metric-retention"><span className="metric-icon red"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 19v-1a6 6 0 0 1 12 0v1zM16 5a3 3 0 0 1 0 6M18 14a4 4 0 0 1 3 4v1h-3"/></svg></span><span><b>1M+</b><small>Users worldwide</small></span></div>
+          <div className="metric metric-response"><span className="metric-icon dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Fast Servers <i></i></b><small>50+ locations</small></span></div>
+          <div className="metric metric-conversion"><span className="metric-icon black"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 6-6 4 3 7-8M14 6h6v6"/></svg></span><span><b>AES-256</b><small>Encryption</small></span></div>
         </article>
-        <article className="feature-expertise"><div className="expertise-top"><b>[ EXPERTISE ]</b><span>実績と信頼</span></div><div className="expertise-copy"><strong>13+</strong><span>Years<br/>Industry<br/>Experience</span></div></article>
+        <article className="feature-expertise"><div className="expertise-top"><b>[ PRIVACY ]</b><span>世界中で保護</span></div><div className="expertise-copy"><strong>50+</strong><span>Fast<br/>Server<br/>Locations</span></div></article>
       </div>
       <div className="feature-bottom-cards">
         <article className="bottom-feature simplicity-card">
-          <header><h3>Simplicity</h3><span>シンプルさと明快さ</span></header>
-          <img className="bottom-feature-art" src="/images/features/simplicity-ring.png" alt="Sculptural red glass ring"/>
-          <div className="bottom-feature-copy"><h4>Less friction. More focus.</h4><p>We remove unnecessary complexity, streamline workflows, and create systems that help teams focus on what actually matters.</p></div>
+          <header><h3>Encryption</h3><span>暗号化と保護</span></header>
+          <img className="bottom-feature-art" src="/images/vpn/photos/cafe-laptop.jpg" alt="Person browsing on a laptop in a café"/>
+          <div className="bottom-feature-copy"><h4>Private by default.</h4><p>AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.</p></div>
         </article>
         <article className="bottom-feature growth-card">
-          <header><h3>Client Growth</h3></header>
-          <img className="bottom-feature-art" src="/images/features/client-growth.png" alt="A handshake representing a growing client partnership"/>
-          <div className="growth-stat"><span>↗ &nbsp; +12% MoM</span><strong>68%</strong><p>Average client growth after implementation</p></div>
+          <header><h3>Global Access</h3></header>
+          <img className="bottom-feature-art" src="/images/vpn/photos/city-phone.jpg" alt="Traveler using a phone while out in the city"/>
+          <div className="growth-stat"><span>↗ &nbsp; GLOBAL NETWORK</span><strong>50+</strong><p>Fast server locations for your connection</p></div>
         </article>
         <article className="bottom-feature execution-card">
-          <header><b>ñeiden<sup>®</sup> <i className="mini-mark"><i/><i/><i/><i/></i></b><span className="launch-pill"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><strong>Launch Time</strong><small>2–4 Weeks</small></span></span></header>
-          <img className="bottom-feature-art" src="/images/features/faster-execution.png" alt="A fast moving performance wheel"/>
-          <div className="bottom-feature-copy"><h4>Faster Execution</h4><p>Less waiting. Less complexity.<br/>More progress from day one.</p></div>
+          <header><b>Traverse VPN <i className="mini-mark"><i/><i/><i/><i/></i></b><span className="launch-pill"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><strong>One tap</strong><small>Connect</small></span></span></header>
+          <img className="bottom-feature-art" src="/images/vpn/photos/airport-work.jpg" alt="Traveler using a laptop while waiting at an airport"/>
+          <div className="bottom-feature-copy"><h4>Easy to Connect</h4><p>Choose a server. Tap connect.<br/>Browse with more privacy.</p></div>
         </article>
       </div>
     </section>
 
+    <ProjectStories />
+
     <section className="pricing section platform-pricing" id="pricing">
       <GridLines />
       <div className="pricing-heading platform-pricing-heading">
-        <div className="platform-pricing-title"><h2>Pricing</h2><div className="platform-pricing-meta"><div><b>005</b><span>ñeiden®</span></div><p>Flexible, transparent plans. Built for clarity and growth.</p><small>Scale at your own pace – choose only what you need, when you need it. Nothing extra, nothing locked in.</small></div></div>
+        <div className="platform-pricing-title"><h2>VPN Plans</h2><div className="platform-pricing-meta"><div><b>005</b><span>Traverse VPN</span></div><p>Simple plans for private browsing wherever you connect.</p><small>Choose weekly, monthly, or annual protection and connect across your devices.</small></div></div>
       </div>
       <div className="platform-pricing-rows">{pricingPlans.map(plan => <article className="platform-price-row" key={plan.name}>
         <div className="platform-plan-visual"><img src={plan.image} alt=""/><div className="platform-plan-visual-shade"/><h3>{plan.name}</h3><span>{plan.audience}</span></div>
-        <div className="platform-price-cell"><span className="platform-cell-label">Price</span><strong>${yearlyPlans.includes(plan.name) ? plan.yearly : plan.monthly}</strong><div className="platform-billing"><span className={!yearlyPlans.includes(plan.name) ? "active" : ""}>Monthly</span><button type="button" aria-label={`Switch ${plan.name} to ${yearlyPlans.includes(plan.name) ? "monthly" : "yearly"} billing`} aria-pressed={yearlyPlans.includes(plan.name)} onClick={() => setYearlyPlans(current => current.includes(plan.name) ? current.filter(name => name !== plan.name) : [...current, plan.name])}><i/></button><span className={yearlyPlans.includes(plan.name) ? "active" : ""}>Yearly</span></div><small className="platform-save">You save 16%</small></div>
-        <div className="platform-plan-info"><div><span className="platform-cell-label">Plan</span><strong>{plan.plan}</strong></div><div><span className="platform-cell-label">Seats</span><strong>{plan.seats}</strong></div></div>
+        <div className="platform-price-cell"><span className="platform-cell-label">Price</span><strong>${yearlyPlans.includes(plan.name) ? plan.yearly : plan.monthly}</strong><div className="platform-billing"><span className={!yearlyPlans.includes(plan.name) ? "active" : ""}>Monthly</span><button type="button" aria-label={`Switch ${plan.name} to ${yearlyPlans.includes(plan.name) ? "monthly" : "yearly"} billing`} aria-pressed={yearlyPlans.includes(plan.name)} onClick={() => setYearlyPlans(current => current.includes(plan.name) ? current.filter(name => name !== plan.name) : [...current, plan.name])}><i/></button><span className={yearlyPlans.includes(plan.name) ? "active" : ""}>Yearly</span></div><small className="platform-save">{plan.save}</small></div>
+        <div className="platform-plan-info"><div><span className="platform-cell-label">Plan</span><strong>{plan.plan}</strong></div><div><span className="platform-cell-label">Devices</span><strong>{plan.seats}</strong></div></div>
         <ul className="platform-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-        <div className="platform-plan-action"><a href="mailto:hello@neiden.project">Select Plan <span aria-hidden="true">↗</span></a></div>
+        <div className="platform-plan-action"><a href="https://links.traversevpn.com/s/Ugp0lRJV">Get protection <span aria-hidden="true">↗</span></a></div>
       </article>)}</div>
-      <a className="platform-enterprise" href="mailto:hello@neiden.project">Contact sales for Enterprise Plan <span aria-hidden="true">↗</span></a>
+      <a className="platform-enterprise" href="https://traversevpn.com/">Explore Traverse VPN <span aria-hidden="true">↗</span></a>
     </section>
+
+    <JourneySection />
+    <ProjectAnswers />
+    <footer className="visuvate-footer">
+      <div className="visuvate-footer-wordmark" aria-hidden="true">Traverse</div>
+      <div className="visuvate-footer-top"><p className="footer-eyebrow">PRIVATE BROWSING STARTS HERE</p><h2>Browse Freely.<br/>Stay Private.</h2><div className="visuvate-footer-actions"><a className="footer-pill footer-pill-muted" href="#services">Explore features <span>↗</span></a><a className="footer-pill footer-pill-light" href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse VPN <span>↗</span></a></div></div>
+      <FooterHands />
+      <div className="visuvate-footer-content"><div className="visuvate-social-grid"><a href="https://traversevpn.com/" aria-label="Traverse VPN">◎ <span>Traverse VPN</span><i>↗</i></a><a href="https://traversevpn.com/" aria-label="VPN apps">in <span>VPN apps</span><i>↗</i></a><a href="https://traversevpn.com/" aria-label="Privacy features">𝕏 <span>Privacy</span><i>↗</i></a><a href="https://traversevpn.com/" aria-label="VPN support">◉ <span>Support</span><i>↗</i></a></div>
+        <div className="visuvate-footer-columns"><div className="visuvate-footer-group"><h3>Traverse VPN</h3><a href="#about">About Traverse</a><a href="#services">VPN features</a><a href="https://traversevpn.com/">Privacy policy</a><a href="https://traversevpn.com/">Terms of service</a></div><div className="visuvate-footer-group"><h3>Protection</h3><a href="#services">AES-256 encryption</a><a href="#services">IP masking</a><a href="#services">Public Wi-Fi</a></div><div className="visuvate-footer-group"><h3>Resources</h3><a href="#faqs">VPN FAQs</a><a href="#pricing">Plans and pricing</a><a href="#journey">Getting started</a></div><div className="visuvate-footer-group visuvate-contact"><h3>Connect</h3><a href="https://traversevpn.com/">Visit traversevpn.com</a><a href="https://links.traversevpn.com/s/Ugp0lRJV">Get the app</a><span>Private connections</span><span>For your everyday devices</span></div></div><div className="visuvate-copyright">© 2026 Traverse VPN. All rights reserved.</div>
+      </div>
+    </footer>
   </main>;
 }

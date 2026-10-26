@@ -41,10 +41,6 @@ function GridLines() {
   return <div className="grid-lines" aria-hidden="true"><i/><i/><i/><i/></div>;
 }
 
-function SectionLabel({ children }: { children: string }) {
-  return <div className="section-label"><span className="label-mark" aria-hidden="true"><i/><i/><i/><i/></span><span>[</span><b>VPN</b><i>—</i><b>{children}</b><span>]</span></div>;
-}
-
 function Plus() { return <span className="plus" aria-hidden="true">+</span>; }
 
 function ScrollRevealWords({ text }: { text: string }) {
@@ -129,7 +125,7 @@ function JourneySection() {
   }, []);
   return <section className="journey-section section" id="journey" ref={sectionRef}>
     <GridLines/><div className="journey-grid">
-      <div className="journey-left"><div className="journey-intro"><SectionLabel>GETTING STARTED</SectionLabel><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img loading="lazy" decoding="async" src="/images/journey/erik.webp" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
+      <div className="journey-left"><div className="journey-intro"><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img loading="lazy" decoding="async" src="/images/journey/erik.webp" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
       <div className="journey-visual" aria-hidden="true"><div className="journey-image-frame">{journeySteps.map((step,index)=><img loading="lazy" decoding="async" key={step.year} className={activeStep===index?"active":""} src={step.image} alt=""/>)}</div></div>
       <div className="journey-timeline" style={{"--journey-progress":progress} as CSSProperties}><ol>{journeySteps.map((step,index)=><li className={`journey-step${activeStep===index?" active":""}`} key={step.year}><span className="journey-node" aria-hidden="true"/><img loading="lazy" decoding="async" className="journey-mobile-image" src={step.image} alt=""/><span className="journey-year">{step.year}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div>
     </div>
@@ -143,7 +139,7 @@ const clientTestimonials = [
 ];
 
 function ProjectStories() {
-  return <section className="project-stories section" id="stories"><GridLines/><div className="stories-inner"><div className="stories-heading"><div><SectionLabel>VPN USER STORIES</SectionLabel><h2>Privacy in<br/>their words.</h2></div><div className="stories-deck"><p>Hear how a VPN can help people feel more private on public Wi-Fi, while travelling, and in everyday browsing. These are sample stories; replace them with approved customer feedback.</p><span>SAMPLE TESTIMONIALS · REPLACE BEFORE PUBLISHING</span></div></div>
+  return <section className="project-stories section" id="stories"><GridLines/><div className="stories-inner"><div className="stories-heading"><h2>Privacy in<br/>their words.</h2></div>
     <div className="story-cards">{clientTestimonials.map(story=><article className={`story-card testimonial-${story.accent}`} key={story.number}><div className="story-meta"><span>{story.number} / {story.type}</span><span>SAMPLE</span></div><span className="testimonial-mark" aria-hidden="true">“</span><blockquote>{story.quote}</blockquote><div className="story-attribution"><span className="story-avatar" aria-hidden="true">{story.number}</span><span><b>Sample VPN user</b><small>{story.role} · Sample story</small></span><i>PREVIEW</i></div></article>)}</div><div className="stories-foot"><span>HAVE A STORY TO SHARE?</span><a href="https://traversevpn.com/">Explore Traverse VPN <b aria-hidden="true">↗</b></a></div>
   </div></section>;
 }
@@ -157,7 +153,7 @@ const projectAnswers = [
 ];
 
 function ProjectAnswers() {
-  return <section className="project-answers section" id="faqs"><GridLines/><div className="answers-layout"><div className="answers-aside"><SectionLabel>VPN FAQS</SectionLabel><h2>Good to<br/>know.</h2><p>Quick answers about VPN privacy, connections, devices, and Traverse plans.</p><div className="answers-contact"><span>MORE ABOUT TRAVERSE?</span><a href="https://traversevpn.com/">Visit Traverse VPN <b aria-hidden="true">↗</b></a></div></div><div className="answers-list">{projectAnswers.map((item,index)=><details className="answer-item" key={item.question} open={index===0}><summary><span className="answer-number">{String(index+1).padStart(2,"0")}</span><span className="answer-question">{item.question}</span><i aria-hidden="true"/></summary><p>{item.answer}</p></details>)}</div></div></section>;
+  return <section className="project-answers section" id="faqs"><GridLines/><div className="answers-layout"><div className="answers-aside"><h2>Good to<br/>know.</h2><p>Quick answers about VPN privacy, connections, devices, and Traverse plans.</p><div className="answers-contact"><span>MORE ABOUT TRAVERSE?</span><a href="https://traversevpn.com/">Visit Traverse VPN <b aria-hidden="true">↗</b></a></div></div><div className="answers-list">{projectAnswers.map((item,index)=><details className="answer-item" key={item.question} open={index===0}><summary><span className="answer-number">{String(index+1).padStart(2,"0")}</span><span className="answer-question">{item.question}</span><i aria-hidden="true"/></summary><p>{item.answer}</p></details>)}</div></div></section>;
 }
 
 export default function Home() {
@@ -232,7 +228,7 @@ export default function Home() {
 
       const about = main.querySelector(".about");
       if (about) {
-        const items = about.querySelectorAll<HTMLElement>(".about-projects, .about-heading .section-label, .about-meta");
+        const items = about.querySelectorAll<HTMLElement>(".about-projects, .about-meta");
         gsap.fromTo(items, { autoAlpha: 0, y: 22, filter: "blur(6px)" }, {
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.9,
           stagger: 0.12, ease: "power3.out",
@@ -246,7 +242,7 @@ export default function Home() {
 
       const services = main.querySelector(".services");
       if (services) {
-        const asideItems = services.querySelectorAll<HTMLElement>(".services-aside .section-label, .services-intro h2 span, .services-intro p, .scope-cta > *");
+        const asideItems = services.querySelectorAll<HTMLElement>(".services-intro h2 span, .services-intro p, .scope-cta > *");
         gsap.fromTo(asideItems, { autoAlpha: 0, y: 28, filter: "blur(6px)" }, {
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.85,
           stagger: 0.1, ease: "power3.out",
@@ -267,10 +263,10 @@ export default function Home() {
       }
 
       const reveals = [
-        [".features", ".features-intro .section-label, .features-intro p, .features-heading > h2, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
+        [".features", ".features-intro p, .features-heading > h2, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
         [".n-pricing", ".n-pricing-intro > *, .n-pricing-toolbar > *, .n-plan-card"],
         [".journey-section", ".journey-intro > *, .journey-quote > *, .journey-visual, .journey-step"],
-        [".project-stories", ".stories-heading .section-label, .stories-heading h2, .stories-deck > *, .story-card, .stories-foot > *"],
+        [".project-stories", ".stories-heading h2, .story-card, .stories-foot > *"],
         [".visuvate-footer", ".visuvate-footer-top > *, .visuvate-social-grid > *, .visuvate-footer-group > *, .visuvate-copyright"],
       ];
 
@@ -287,7 +283,7 @@ export default function Home() {
 
       const faqs = main.querySelector<HTMLElement>(".project-answers");
       if (faqs) {
-        const intro = faqs.querySelectorAll<HTMLElement>(".answers-aside .section-label, .answers-aside h2, .answers-aside > p, .answers-contact > *");
+        const intro = faqs.querySelectorAll<HTMLElement>(".answers-aside h2, .answers-aside > p, .answers-contact > *");
         const rows = faqs.querySelectorAll<HTMLElement>(".answer-item");
         gsap.fromTo(intro, { autoAlpha: 0, y: 24, filter: "blur(5px)" }, {
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.8,
@@ -346,7 +342,7 @@ export default function Home() {
       <div className="about-projects">1M+ USERS</div>
       <div className="about-images"><img loading="lazy" decoding="async" className="about-left" src="/images/vpn/photos/airport-work.webp" alt="Traveler working on a laptop at the airport"/><img loading="lazy" decoding="async" className="about-right" src="/images/vpn/photos/city-phone.webp" alt="Traveler using a phone in the city at night"/></div>
       <div className="about-heading">
-        <SectionLabel>WHY TRAVERSE</SectionLabel>
+
         <h2><ScrollRevealWords text="Private connections"/><br className="desktop-break"/> <ScrollRevealWords text="for everyday browsing,"/><br className="desktop-break"/> <ScrollRevealWords text="wherever life takes you."/></h2>
       </div>
       <div className="about-meta">VPN PROTECTION</div>
@@ -355,7 +351,7 @@ export default function Home() {
 
     <section className="services section" id="services" ref={servicesRef}>
       <GridLines/>
-      <aside className="services-aside"><SectionLabel>VPN FEATURES</SectionLabel><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div><div className="scope-cta"><b>50+ FAST SERVERS WORLDWIDE</b><p>Private browsing, wherever you connect.</p><a className="project-button" href="https://links.traversevpn.com/s/Ugp0lRJV"><span>GET TRAVERSE VPN</span><Plus/></a></div></aside>
+      <aside className="services-aside"><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div><div className="scope-cta"><b>50+ FAST SERVERS WORLDWIDE</b><p>Private browsing, wherever you connect.</p><a className="project-button" href="https://links.traversevpn.com/s/Ugp0lRJV"><span>GET TRAVERSE VPN</span><Plus/></a></div></aside>
       <div className="service-list">{services.map((service) => <article className="service" key={service.number}>
         <div className="service-head"><span>{service.number}</span><h3>{service.title}</h3></div>
         <div className="service-images">{service.images.map((image, index) => <img loading="lazy" decoding="async" key={image} src={image} alt={service.alt[index]}/>)}</div>
@@ -367,7 +363,7 @@ export default function Home() {
     <section className="features section" id="how-we-work">
       <GridLines />
       <div className="features-heading">
-        <div className="features-intro"><SectionLabel>VPN PROTECTION</SectionLabel><p>A closer look at how Traverse helps protect your connection, mask your IP, and browse with more privacy.</p></div>
+        <div className="features-intro"><p>A closer look at how Traverse helps protect your connection, mask your IP, and browse with more privacy.</p></div>
         <h2>How Traverse Protects You</h2>
       </div>
       <div className="features-cards">
@@ -405,7 +401,7 @@ export default function Home() {
     <section className="pricing section n-pricing" id="pricing">
       <GridLines />
       <div className="n-pricing-inner">
-        <div className="n-pricing-intro"><SectionLabel>PRICING</SectionLabel><p>Simple protection plans for your devices, wherever life takes you.</p></div>
+        <div className="n-pricing-intro"><p>Simple protection plans for your devices, wherever life takes you.</p></div>
         <div className="n-pricing-toolbar"><h2>Packages</h2><div className="n-billing-control" aria-label="Billing period"><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button><span>Save up to 50%</span></div></div>
         <div className="n-plan-grid">{pricingPlans.map((plan, index) => {
           const price = annualBilling ? plan.yearly : plan.monthly;

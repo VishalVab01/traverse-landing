@@ -163,7 +163,7 @@ body.hero-in-view .bottom-glass-bar{opacity:0}
 .hero-globe{position:absolute;z-index:0;left:50%;bottom:-220px;transform:translateX(-50%);width:min(680px,80vw);height:560px;overflow:hidden;opacity:1;pointer-events:none}
 .hero-globe>div{width:100%;height:100%;min-width:0;min-height:0;background:transparent!important}
 .hero-reference .ref-hint,.hero-reference .ref-announcement,.hero-reference .ref-copy{z-index:2}
-@media(max-width:900px){.hero-globe{width:min(680px,92vw);height:460px;bottom:-110px}}
+@media(max-width:900px){.hero-globe{left:calc(50% - 6px);width:min(680px,100vw);height:460px;bottom:-110px}}
 .about-reveal-word{display:inline-block;will-change:opacity,filter,transform}
 .gsap-about-motion-ready .about-reveal-word{opacity:.1;filter:blur(8px);transform:translateY(12px)}
 @media(min-width:901px){.about-heading h2{margin-left:calc(-27.3333vw - 1.33px);width:calc(88vw - 24px);text-align:center}}

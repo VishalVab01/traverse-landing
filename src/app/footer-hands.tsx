@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const hands = [
-  { side: "left", src: "/images/footer/hands-left.png" },
-  { side: "right", src: "/images/footer/hands-right.png" },
+  { side: "left", src: "/images/footer/hands-left.webp" },
+  { side: "right", src: "/images/footer/hands-right.webp" },
 ] as const;
 
 type HandFrame = {

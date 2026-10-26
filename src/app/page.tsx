@@ -15,25 +15,25 @@ const services = [
     number: "001.", title: "Private Connection & Encryption",
     description: "Protect your connection with AES-256 encryption. Traverse VPN helps shield your data on public Wi-Fi and keeps your browsing more private.",
     price: "Included", tags: ["AES-256", "IP masking", "DNS leak protection", "Kill Switch", "No WebRTC leaks", "Split tunneling"],
-    images: ["/images/vpn/photos/cafe-laptop.jpg", "/images/vpn/photos/night-phone.jpg"], alt: ["Traveler using a laptop in a café", "Person using a phone in a city at night"]
+    images: ["/images/vpn/photos/cafe-laptop.webp", "/images/vpn/photos/night-phone.webp"], alt: ["Traveler using a laptop in a café", "Person using a phone in a city at night"]
   },
   {
     number: "002.", title: "Fast Global Server Access",
     description: "Choose from 50+ fast servers to reach content around the world. Enjoy unlimited bandwidth and a connection built for everyday browsing.",
     price: "50+ servers", tags: ["Global locations", "Unlimited bandwidth", "Up to 1 Gbps", "No throttling", "Streaming", "Low latency"],
-    images: ["/images/vpn/photos/airport-work.jpg", "/images/vpn/photos/city-phone.jpg"], alt: ["Traveler working at an airport gate", "Traveler using a phone on a city street"]
+    images: ["/images/vpn/photos/airport-work.webp", "/images/vpn/photos/city-phone.webp"], alt: ["Traveler working at an airport gate", "Traveler using a phone on a city street"]
   },
   {
     number: "003.", title: "Safer Public Wi-Fi",
     description: "Connect with more confidence at airports, cafés, hotels, and other shared networks. Automatic protection helps keep your data private when you connect.",
     price: "Every network", tags: ["Auto-connect", "Wi-Fi protection", "Encrypted traffic", "Hide your IP", "Private browsing", "Travel ready"],
-    images: ["/images/vpn/photos/cafe-collaboration.jpg", "/images/vpn/photos/cafe-phone.jpg"], alt: ["People using laptops in a café", "Phone in use in a public indoor space"]
+    images: ["/images/vpn/photos/cafe-collaboration.webp", "/images/vpn/photos/cafe-phone.webp"], alt: ["People using laptops in a café", "Phone in use in a public indoor space"]
   },
   {
     number: "004.", title: "No-Logs Privacy",
     description: "Traverse VPN says it does not collect or share your browsing activity. Open-source protocols and a published no-logs policy help make its approach easier to review.",
     price: "Privacy first", tags: ["No-logs policy", "OpenVPN", "WireGuard", "Independent audits", "No data sharing", "Zero knowledge"],
-    images: ["/images/vpn/photos/night-phone.jpg", "/images/vpn/photos/travel-desk.jpg"], alt: ["Phone in a city at night", "Travel workspace with a laptop and passport"]
+    images: ["/images/vpn/photos/night-phone.webp", "/images/vpn/photos/travel-desk.webp"], alt: ["Phone in a city at night", "Travel workspace with a laptop and passport"]
   },
 ];
 
@@ -70,24 +70,24 @@ const bottomBlurLayers = [
 
 const pricingPlans = [
   {
-    audience: "Quick protection for a short trip", name: "Weekly", monthly: "1.49", yearly: "1.49", plan: "Weekly", seats: "All devices", image: "/images/vpn/photos/city-phone.jpg", save: "One week of protection",
+    audience: "Quick protection for a short trip", name: "Weekly", monthly: "1.49", yearly: "1.49", plan: "Weekly", seats: "All devices", image: "/images/vpn/photos/city-phone.webp", save: "One week of protection",
     features: ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"],
   },
   {
-    audience: "Flexible month-to-month privacy", name: "Monthly", monthly: "3.99", yearly: "1.99", plan: "Monthly", seats: "All devices", image: "/images/vpn/photos/cafe-laptop.jpg", save: "Cancel anytime",
+    audience: "Flexible month-to-month privacy", name: "Monthly", monthly: "3.99", yearly: "1.99", plan: "Monthly", seats: "All devices", image: "/images/vpn/photos/cafe-laptop.webp", save: "Cancel anytime",
     features: ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"],
   },
   {
-    audience: "Best value for year-round security", name: "Yearly", monthly: "3.99", yearly: "1.99", plan: "Annual", seats: "All devices", image: "/images/vpn/photos/airport-work.jpg", save: "Save 67% with annual billing",
+    audience: "Best value for year-round security", name: "Yearly", monthly: "3.99", yearly: "1.99", plan: "Annual", seats: "All devices", image: "/images/vpn/photos/airport-work.webp", save: "Save 67% with annual billing",
     features: ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"],
   },
 ];
 
 const journeySteps = [
-  { year: "STEP 01", title: "Choose your\nTraverse plan", description: "Pick weekly, monthly, or annual protection for the way you use the internet.", image: "/images/vpn/photos/cafe-laptop.jpg" },
-  { year: "STEP 02", title: "Connect to a\nfast server", description: "Choose a location from 50+ fast servers and connect with one tap.", image: "/images/vpn/photos/airport-work.jpg" },
-  { year: "STEP 03", title: "Browse with\nmore privacy", description: "Your IP is masked and your internet traffic is protected with encryption.", image: "/images/vpn/photos/city-phone.jpg" },
-  { year: "STAY PROTECTED", title: "Carry privacy\nwith you", description: "Use Traverse VPN across your devices at home, at work, and on the go.", image: "/images/vpn/photos/cafe-collaboration.jpg" },
+  { year: "STEP 01", title: "Choose your\nTraverse plan", description: "Pick weekly, monthly, or annual protection for the way you use the internet.", image: "/images/vpn/photos/cafe-laptop.webp" },
+  { year: "STEP 02", title: "Connect to a\nfast server", description: "Choose a location from 50+ fast servers and connect with one tap.", image: "/images/vpn/photos/airport-work.webp" },
+  { year: "STEP 03", title: "Browse with\nmore privacy", description: "Your IP is masked and your internet traffic is protected with encryption.", image: "/images/vpn/photos/city-phone.webp" },
+  { year: "STAY PROTECTED", title: "Carry privacy\nwith you", description: "Use Traverse VPN across your devices at home, at work, and on the go.", image: "/images/vpn/photos/cafe-collaboration.webp" },
 ];
 
 function JourneySection() {
@@ -129,9 +129,9 @@ function JourneySection() {
   }, []);
   return <section className="journey-section section" id="journey" ref={sectionRef}>
     <GridLines/><div className="journey-grid">
-      <div className="journey-left"><div className="journey-intro"><SectionLabel>GETTING STARTED</SectionLabel><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img src="/images/journey/erik.png" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
-      <div className="journey-visual" aria-hidden="true"><div className="journey-image-frame">{journeySteps.map((step,index)=><img key={step.year} className={activeStep===index?"active":""} src={step.image} alt=""/>)}</div></div>
-      <div className="journey-timeline" style={{"--journey-progress":progress} as CSSProperties}><ol>{journeySteps.map((step,index)=><li className={`journey-step${activeStep===index?" active":""}`} key={step.year}><span className="journey-node" aria-hidden="true"/><img className="journey-mobile-image" src={step.image} alt=""/><span className="journey-year">{step.year}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div>
+      <div className="journey-left"><div className="journey-intro"><SectionLabel>GETTING STARTED</SectionLabel><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img loading="lazy" decoding="async" src="/images/journey/erik.webp" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
+      <div className="journey-visual" aria-hidden="true"><div className="journey-image-frame">{journeySteps.map((step,index)=><img loading="lazy" decoding="async" key={step.year} className={activeStep===index?"active":""} src={step.image} alt=""/>)}</div></div>
+      <div className="journey-timeline" style={{"--journey-progress":progress} as CSSProperties}><ol>{journeySteps.map((step,index)=><li className={`journey-step${activeStep===index?" active":""}`} key={step.year}><span className="journey-node" aria-hidden="true"/><img loading="lazy" decoding="async" className="journey-mobile-image" src={step.image} alt=""/><span className="journey-year">{step.year}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div>
     </div>
   </section>;
 }
@@ -344,7 +344,7 @@ export default function Home() {
     <section className="about section" id="about" ref={aboutRef}>
       <GridLines/>
       <div className="about-projects">1M+ USERS</div>
-      <div className="about-images"><img className="about-left" src="/images/vpn/photos/airport-work.jpg" alt="Traveler working on a laptop at the airport"/><img className="about-right" src="/images/vpn/photos/city-phone.jpg" alt="Traveler using a phone in the city at night"/></div>
+      <div className="about-images"><img loading="lazy" decoding="async" className="about-left" src="/images/vpn/photos/airport-work.webp" alt="Traveler working on a laptop at the airport"/><img loading="lazy" decoding="async" className="about-right" src="/images/vpn/photos/city-phone.webp" alt="Traveler using a phone in the city at night"/></div>
       <div className="about-heading">
         <SectionLabel>WHY TRAVERSE</SectionLabel>
         <h2><ScrollRevealWords text="Private connections"/><br className="desktop-break"/> <ScrollRevealWords text="for everyday browsing,"/><br className="desktop-break"/> <ScrollRevealWords text="wherever life takes you."/></h2>
@@ -358,7 +358,7 @@ export default function Home() {
       <aside className="services-aside"><SectionLabel>VPN FEATURES</SectionLabel><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div><div className="scope-cta"><b>50+ FAST SERVERS WORLDWIDE</b><p>Private browsing, wherever you connect.</p><a className="project-button" href="https://links.traversevpn.com/s/Ugp0lRJV"><span>GET TRAVERSE VPN</span><Plus/></a></div></aside>
       <div className="service-list">{services.map((service) => <article className="service" key={service.number}>
         <div className="service-head"><span>{service.number}</span><h3>{service.title}</h3></div>
-        <div className="service-images">{service.images.map((image, index) => <img key={image} src={image} alt={service.alt[index]}/>)}</div>
+        <div className="service-images">{service.images.map((image, index) => <img loading="lazy" decoding="async" key={image} src={image} alt={service.alt[index]}/>)}</div>
         <div className="service-body"><div><p>{service.description}</p><div className="service-price">STARTING FROM <b>{service.price}</b></div></div><div className="tags">{service.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
       </article>)}</div>
       <div className="availability"><span>STRONG <b>AES-256</b></span><span>BUILT FOR <b>YOUR PRIVACY</b></span></div>
@@ -374,7 +374,7 @@ export default function Home() {
         <article className="feature-copy">
           <div className="feature-copy-bottom"><h3>Privacy made practical</h3><p>Encrypt your traffic, mask your IP address, and connect with greater confidence on networks you don’t control.</p><ul><li><span>✓</span>AES-256 encrypted connection</li><li><span>✓</span><details><summary>Protection for public Wi-Fi <i>ⓘ</i></summary><p>Encryption can help protect your internet traffic when you use shared networks in cafés, hotels, airports, and other public places.</p></details></li><li><span>✓</span>Fast servers around the world</li></ul></div>
         </article>
-        <article className="feature-visual" aria-label="Traverse VPN privacy features"><img className="feature-phone" src="/images/vpn/photos/cafe-phone.jpg" alt="Phone in use in a public indoor space"/>
+        <article className="feature-visual" aria-label="Traverse VPN privacy features"><img loading="lazy" decoding="async" className="feature-phone" src="/images/vpn/photos/cafe-phone.webp" alt="Phone in use in a public indoor space"/>
           <div className="metric metric-retention"><span className="metric-icon red"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 19v-1a6 6 0 0 1 12 0v1zM16 5a3 3 0 0 1 0 6M18 14a4 4 0 0 1 3 4v1h-3"/></svg></span><span><b>1M+</b><small>Users worldwide</small></span></div>
           <div className="metric metric-response"><span className="metric-icon dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Fast Servers <i></i></b><small>50+ locations</small></span></div>
           <div className="metric metric-conversion"><span className="metric-icon black"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 6-6 4 3 7-8M14 6h6v6"/></svg></span><span><b>AES-256</b><small>Encryption</small></span></div>
@@ -384,17 +384,17 @@ export default function Home() {
       <div className="feature-bottom-cards">
         <article className="bottom-feature simplicity-card">
           <header><h3>Encryption</h3></header>
-          <img className="bottom-feature-art" src="/images/vpn/photos/cafe-laptop.jpg" alt="Person browsing on a laptop in a café"/>
+          <img loading="lazy" decoding="async" className="bottom-feature-art" src="/images/vpn/photos/cafe-laptop.webp" alt="Person browsing on a laptop in a café"/>
           <div className="bottom-feature-copy"><h4>Encryption for every connection.</h4><p>AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.</p></div>
         </article>
         <article className="bottom-feature growth-card">
           <header><h3>Global Access</h3></header>
-          <img className="bottom-feature-art" src="/images/vpn/photos/city-phone.jpg" alt="Traveler using a phone while out in the city"/>
+          <img loading="lazy" decoding="async" className="bottom-feature-art" src="/images/vpn/photos/city-phone.webp" alt="Traveler using a phone while out in the city"/>
           <div className="growth-stat"><span>↗ &nbsp; GLOBAL NETWORK</span><strong>50+</strong><p>Fast server locations for your connection</p></div>
         </article>
         <article className="bottom-feature execution-card">
           <header><b>Traverse VPN <i className="mini-mark"><i/><i/><i/><i/></i></b><span className="launch-pill"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><strong>One tap</strong><small>Connect</small></span></span></header>
-          <img className="bottom-feature-art" src="/images/vpn/photos/airport-work.jpg" alt="Traveler using a laptop while waiting at an airport"/>
+          <img loading="lazy" decoding="async" className="bottom-feature-art" src="/images/vpn/photos/airport-work.webp" alt="Traveler using a laptop while waiting at an airport"/>
           <div className="bottom-feature-copy"><h4>Easy to Connect</h4><p>Choose a server. Tap connect.<br/>Browse with more privacy.</p></div>
         </article>
       </div>

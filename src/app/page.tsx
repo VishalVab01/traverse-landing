@@ -405,7 +405,7 @@ export default function Home() {
     <section className="pricing section n-pricing" id="pricing">
       <GridLines />
       <div className="n-pricing-inner">
-        <div className="n-pricing-intro"><SectionLabel japanese="価格と価値">PRICING</SectionLabel><p>Simple protection plans for your devices, wherever life takes you.</p></div>
+        <div className="n-pricing-intro"><SectionLabel>PRICING</SectionLabel><p>Simple protection plans for your devices, wherever life takes you.</p></div>
         <div className="n-pricing-toolbar"><h2>Packages</h2><div className="n-billing-control" aria-label="Billing period"><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button><span>Save up to 50%</span></div></div>
         <div className="n-plan-grid">{pricingPlans.map((plan, index) => {
           const price = annualBilling ? plan.yearly : plan.monthly;

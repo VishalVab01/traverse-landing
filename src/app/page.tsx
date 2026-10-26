@@ -331,8 +331,8 @@ export default function Home() {
     <SiteHeader />
     <section className="hero hero-reference" id="home">
       <div className="hero-globe" aria-hidden="true"><GlobeStudy baseColor="#F22C59" style={{ width: "100%", height: "100%" }} /></div>
-      <p className="ref-hint"><i aria-hidden="true"/> MOVE FREELY · STAY PRIVATE</p>
-      <div className="ref-announcement"><i aria-hidden="true"/> PRIVATE BY DESIGN <span>·</span> ONE TAP TO CONNECT</div>
+      <p className="ref-hint"><i aria-hidden="true"/> VPN PROTECTION · EVERYWHERE YOU CONNECT</p>
+      <div className="ref-announcement"><i aria-hidden="true"/> PROTECT EVERY CONNECTION <span>·</span> ONE TAP TO CONNECT</div>
       <div className="ref-copy">
         <h1>Browse freely<br/>on any <mark>network.</mark></h1>
         <p>Traverse VPN adds a layer of protection on public Wi-Fi, masks your IP, and helps keep your browsing private at home, while travelling, and wherever you connect.</p>
@@ -349,7 +349,7 @@ export default function Home() {
         <SectionLabel>WHY TRAVERSE</SectionLabel>
         <h2><ScrollRevealWords text="Private connections"/><br className="desktop-break"/> <ScrollRevealWords text="for everyday browsing,"/><br className="desktop-break"/> <ScrollRevealWords text="wherever life takes you."/></h2>
       </div>
-      <div className="about-meta">PRIVATE BY DESIGN</div>
+      <div className="about-meta">VPN PROTECTION</div>
       <div className="about-quote"><ScrollRevealParagraph text="Traverse VPN helps keep your connection private wherever you browse. Strong encryption and IP masking add protection on public Wi-Fi, at home, and while travelling. Connect with one tap and choose from fast servers around the world."/></div>
     </section>
 
@@ -428,7 +428,7 @@ export default function Home() {
     <ProjectAnswers />
     <footer className="visuvate-footer">
       <div className="visuvate-footer-wordmark" aria-hidden="true">Traverse</div>
-      <div className="visuvate-footer-top"><p className="footer-eyebrow">PRIVATE BROWSING STARTS HERE</p><h2>Browse Freely.<br/>Stay Private.</h2><div className="visuvate-footer-actions"><a className="footer-pill footer-pill-muted" href="#services">Explore features <span>↗</span></a><a className="footer-pill footer-pill-light" href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse VPN <span>↗</span></a></div></div>
+      <div className="visuvate-footer-top"><p className="footer-eyebrow">PROTECTION FOR EVERY CONNECTION</p><h2>Connect Securely.<br/>Browse Freely.</h2><div className="visuvate-footer-actions"><a className="footer-pill footer-pill-muted" href="#services">Explore features <span>↗</span></a><a className="footer-pill footer-pill-light" href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse VPN <span>↗</span></a></div></div>
       <FooterHands />
       <div className="visuvate-footer-content"><div className="visuvate-social-grid"><a href="https://traversevpn.com/" aria-label="Traverse VPN">◎ <span>Traverse VPN</span><i>↗</i></a><a href="https://traversevpn.com/" aria-label="VPN apps">in <span>VPN apps</span><i>↗</i></a><a href="https://traversevpn.com/" aria-label="Privacy features">𝕏 <span>Privacy</span><i>↗</i></a><a href="https://traversevpn.com/" aria-label="VPN support">◉ <span>Support</span><i>↗</i></a></div>
         <div className="visuvate-footer-columns"><div className="visuvate-footer-group"><h3>Traverse VPN</h3><a href="#about">About Traverse</a><a href="#services">VPN features</a><a href="https://traversevpn.com/">Privacy policy</a><a href="https://traversevpn.com/">Terms of service</a></div><div className="visuvate-footer-group"><h3>Protection</h3><a href="#services">AES-256 encryption</a><a href="#services">IP masking</a><a href="#services">Public Wi-Fi</a></div><div className="visuvate-footer-group"><h3>Resources</h3><a href="#faqs">VPN FAQs</a><a href="#pricing">Plans and pricing</a><a href="#journey">Getting started</a></div><div className="visuvate-footer-group visuvate-contact"><h3>Connect</h3><a href="https://traversevpn.com/">Visit traversevpn.com</a><a href="https://links.traversevpn.com/s/Ugp0lRJV">Get the app</a><span>Private connections</span><span>For your everyday devices</span></div></div><div className="visuvate-copyright">© 2026 Traverse VPN. All rights reserved.</div>

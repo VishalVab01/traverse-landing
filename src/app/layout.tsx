@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Traverse VPN — Private by Design",
+  title: "Traverse VPN — Secure Every Connection",
   description: "Protect your connection with Traverse VPN. Browse more privately with AES-256 encryption, IP masking, and fast global servers.",
 };
 

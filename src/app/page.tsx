@@ -267,7 +267,7 @@ export default function Home() {
       }
 
       const reveals = [
-        [".features", ".features-intro .section-label, .features-intro p, .features-heading > h2, .feature-people, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
+        [".features", ".features-intro .section-label, .features-intro p, .features-heading > h2, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
         [".n-pricing", ".n-pricing-intro > *, .n-pricing-toolbar > *, .n-plan-card"],
         [".journey-section", ".journey-intro > *, .journey-quote > *, .journey-visual, .journey-step"],
         [".project-stories", ".stories-heading .section-label, .stories-heading h2, .stories-deck > *, .story-card, .stories-foot > *"],
@@ -372,7 +372,6 @@ export default function Home() {
       </div>
       <div className="features-cards">
         <article className="feature-copy">
-          <div className="feature-people"><b>Traverse VPN</b><div>{[1,2,3,4].map(n=><img key={n} src={`/images/features/team-${n}.png`} alt=""/>)}</div></div>
           <div className="feature-copy-bottom"><h3>Privacy made practical</h3><p>Encrypt your traffic, mask your IP address, and connect with greater confidence on networks you don’t control.</p><ul><li><span>✓</span>AES-256 encrypted connection</li><li><span>✓</span><details><summary>Protection for public Wi-Fi <i>ⓘ</i></summary><p>Encryption can help protect your internet traffic when you use shared networks in cafés, hotels, airports, and other public places.</p></details></li><li><span>✓</span>Fast servers around the world</li></ul></div>
         </article>
         <article className="feature-visual" aria-label="Traverse VPN privacy features"><img className="feature-phone" src="/images/vpn/photos/cafe-phone.jpg" alt="Phone in use in a public indoor space"/>

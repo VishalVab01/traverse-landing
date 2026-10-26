@@ -12,25 +12,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    number: "001.", japanese: "暗号化と保護", title: "Private Connection & Encryption",
+    number: "001.", title: "Private Connection & Encryption",
     description: "Protect your connection with AES-256 encryption. Traverse VPN helps shield your data on public Wi-Fi and keeps your browsing more private.",
     price: "Included", tags: ["AES-256", "IP masking", "DNS leak protection", "Kill Switch", "No WebRTC leaks", "Split tunneling"],
     images: ["/images/vpn/photos/cafe-laptop.jpg", "/images/vpn/photos/night-phone.jpg"], alt: ["Traveler using a laptop in a café", "Person using a phone in a city at night"]
   },
   {
-    number: "002.", japanese: "世界中の接続", title: "Fast Global Server Access",
+    number: "002.", title: "Fast Global Server Access",
     description: "Choose from 50+ fast servers to reach content around the world. Enjoy unlimited bandwidth and a connection built for everyday browsing.",
     price: "50+ servers", tags: ["Global locations", "Unlimited bandwidth", "Up to 1 Gbps", "No throttling", "Streaming", "Low latency"],
     images: ["/images/vpn/photos/airport-work.jpg", "/images/vpn/photos/city-phone.jpg"], alt: ["Traveler working at an airport gate", "Traveler using a phone on a city street"]
   },
   {
-    number: "003.", japanese: "Wi-Fiの保護", title: "Safer Public Wi-Fi",
+    number: "003.", title: "Safer Public Wi-Fi",
     description: "Connect with more confidence at airports, cafés, hotels, and other shared networks. Automatic protection helps keep your data private when you connect.",
     price: "Every network", tags: ["Auto-connect", "Wi-Fi protection", "Encrypted traffic", "Hide your IP", "Private browsing", "Travel ready"],
     images: ["/images/vpn/photos/cafe-collaboration.jpg", "/images/vpn/photos/cafe-phone.jpg"], alt: ["People using laptops in a café", "Phone in use in a public indoor space"]
   },
   {
-    number: "004.", japanese: "ログを残さない", title: "No-Logs Privacy",
+    number: "004.", title: "No-Logs Privacy",
     description: "Traverse VPN says it does not collect or share your browsing activity. Open-source protocols and a published no-logs policy help make its approach easier to review.",
     price: "Privacy first", tags: ["No-logs policy", "OpenVPN", "WireGuard", "Independent audits", "No data sharing", "Zero knowledge"],
     images: ["/images/vpn/photos/night-phone.jpg", "/images/vpn/photos/travel-desk.jpg"], alt: ["Phone in a city at night", "Travel workspace with a laptop and passport"]
@@ -41,8 +41,8 @@ function GridLines() {
   return <div className="grid-lines" aria-hidden="true"><i/><i/><i/><i/></div>;
 }
 
-function SectionLabel({ children, japanese }: { children: string; japanese: string }) {
-  return <div className="section-label"><span className="label-mark" aria-hidden="true"><i/><i/><i/><i/></span><span>[</span><b>VPN</b><i>—</i><b>{children} /</b>{japanese && <span className="jp">{japanese}</span>}<span>]</span></div>;
+function SectionLabel({ children }: { children: string }) {
+  return <div className="section-label"><span className="label-mark" aria-hidden="true"><i/><i/><i/><i/></span><span>[</span><b>VPN</b><i>—</i><b>{children}</b><span>]</span></div>;
 }
 
 function Plus() { return <span className="plus" aria-hidden="true">+</span>; }
@@ -129,7 +129,7 @@ function JourneySection() {
   }, []);
   return <section className="journey-section section" id="journey" ref={sectionRef}>
     <GridLines/><div className="journey-grid">
-      <div className="journey-left"><div className="journey-intro"><SectionLabel japanese="ご利用の流れ">GETTING STARTED</SectionLabel><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img src="/images/journey/erik.png" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
+      <div className="journey-left"><div className="journey-intro"><SectionLabel>GETTING STARTED</SectionLabel><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img src="/images/journey/erik.png" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
       <div className="journey-visual" aria-hidden="true"><div className="journey-image-frame">{journeySteps.map((step,index)=><img key={step.year} className={activeStep===index?"active":""} src={step.image} alt=""/>)}</div></div>
       <div className="journey-timeline" style={{"--journey-progress":progress} as CSSProperties}><ol>{journeySteps.map((step,index)=><li className={`journey-step${activeStep===index?" active":""}`} key={step.year}><span className="journey-node" aria-hidden="true"/><img className="journey-mobile-image" src={step.image} alt=""/><span className="journey-year">{step.year}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div>
     </div>
@@ -143,7 +143,7 @@ const clientTestimonials = [
 ];
 
 function ProjectStories() {
-  return <section className="project-stories section" id="stories"><GridLines/><div className="stories-inner"><div className="stories-heading"><div><SectionLabel japanese="利用者の声">VPN USER STORIES</SectionLabel><h2>Privacy in<br/>their words.</h2></div><div className="stories-deck"><p>Hear how a VPN can help people feel more private on public Wi-Fi, while travelling, and in everyday browsing. These are sample stories; replace them with approved customer feedback.</p><span>SAMPLE TESTIMONIALS · REPLACE BEFORE PUBLISHING</span></div></div>
+  return <section className="project-stories section" id="stories"><GridLines/><div className="stories-inner"><div className="stories-heading"><div><SectionLabel>VPN USER STORIES</SectionLabel><h2>Privacy in<br/>their words.</h2></div><div className="stories-deck"><p>Hear how a VPN can help people feel more private on public Wi-Fi, while travelling, and in everyday browsing. These are sample stories; replace them with approved customer feedback.</p><span>SAMPLE TESTIMONIALS · REPLACE BEFORE PUBLISHING</span></div></div>
     <div className="story-cards">{clientTestimonials.map(story=><article className={`story-card testimonial-${story.accent}`} key={story.number}><div className="story-meta"><span>{story.number} / {story.type}</span><span>SAMPLE</span></div><span className="testimonial-mark" aria-hidden="true">“</span><blockquote>{story.quote}</blockquote><div className="story-attribution"><span className="story-avatar" aria-hidden="true">{story.number}</span><span><b>Sample VPN user</b><small>{story.role} · Sample story</small></span><i>PREVIEW</i></div></article>)}</div><div className="stories-foot"><span>HAVE A STORY TO SHARE?</span><a href="https://traversevpn.com/">Explore Traverse VPN <b aria-hidden="true">↗</b></a></div>
   </div></section>;
 }
@@ -157,11 +157,11 @@ const projectAnswers = [
 ];
 
 function ProjectAnswers() {
-  return <section className="project-answers section" id="faqs"><GridLines/><div className="answers-layout"><div className="answers-aside"><SectionLabel japanese="よくある質問">VPN FAQS</SectionLabel><h2>Good to<br/>know.</h2><p>Quick answers about VPN privacy, connections, devices, and Traverse plans.</p><div className="answers-contact"><span>MORE ABOUT TRAVERSE?</span><a href="https://traversevpn.com/">Visit Traverse VPN <b aria-hidden="true">↗</b></a></div></div><div className="answers-list">{projectAnswers.map((item,index)=><details className="answer-item" key={item.question} open={index===0}><summary><span className="answer-number">{String(index+1).padStart(2,"0")}</span><span className="answer-question">{item.question}</span><i aria-hidden="true"/></summary><p>{item.answer}</p></details>)}</div></div></section>;
+  return <section className="project-answers section" id="faqs"><GridLines/><div className="answers-layout"><div className="answers-aside"><SectionLabel>VPN FAQS</SectionLabel><h2>Good to<br/>know.</h2><p>Quick answers about VPN privacy, connections, devices, and Traverse plans.</p><div className="answers-contact"><span>MORE ABOUT TRAVERSE?</span><a href="https://traversevpn.com/">Visit Traverse VPN <b aria-hidden="true">↗</b></a></div></div><div className="answers-list">{projectAnswers.map((item,index)=><details className="answer-item" key={item.question} open={index===0}><summary><span className="answer-number">{String(index+1).padStart(2,"0")}</span><span className="answer-question">{item.question}</span><i aria-hidden="true"/></summary><p>{item.answer}</p></details>)}</div></div></section>;
 }
 
 export default function Home() {
-  const [yearlyPlans, setYearlyPlans] = useState<string[]>([]);
+  const [annualBilling, setAnnualBilling] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLElement>(null);
@@ -220,7 +220,7 @@ export default function Home() {
         { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07, ease: "power2.out", delay: 0.1 });
       const hero = main.querySelector(".hero-reference");
       if (hero) {
-        const intro = hero.querySelectorAll(".ref-hint, .ref-announcement, .ref-copy h1, .ref-copy > p, .ref-actions > *, .ref-bottom-left > *, .ref-feature-pills > *, .ref-bottom-right > *");
+        const intro = hero.querySelectorAll(".ref-hint, .ref-announcement, .ref-copy h1, .ref-copy > p, .ref-actions > *");
         gsap.fromTo(intro, { autoAlpha: 0, y: 26, filter: "blur(8px)" }, {
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 1.05,
           stagger: { each: 0.09, from: "start" }, ease: "power3.out", delay: 0.15,
@@ -268,10 +268,9 @@ export default function Home() {
 
       const reveals = [
         [".features", ".features-intro .section-label, .features-intro p, .features-heading > h2, .feature-people, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
-        [".platform-pricing", ".platform-pricing-title > *, .platform-price-row, .platform-enterprise"],
+        [".n-pricing", ".n-pricing-intro > *, .n-pricing-toolbar > *, .n-plan-card"],
         [".journey-section", ".journey-intro > *, .journey-quote > *, .journey-visual, .journey-step"],
         [".project-stories", ".stories-heading .section-label, .stories-heading h2, .stories-deck > *, .story-card, .stories-foot > *"],
-        [".project-answers", ".answers-aside .section-label, .answers-aside h2, .answers-aside > p, .answers-contact > *, .answer-item summary, .answer-item > p"],
         [".visuvate-footer", ".visuvate-footer-top > *, .visuvate-social-grid > *, .visuvate-footer-group > *, .visuvate-copyright"],
       ];
 
@@ -285,6 +284,22 @@ export default function Home() {
           scrollTrigger: { trigger: section, start: "top 78%", once: true },
         });
       });
+
+      const faqs = main.querySelector<HTMLElement>(".project-answers");
+      if (faqs) {
+        const intro = faqs.querySelectorAll<HTMLElement>(".answers-aside .section-label, .answers-aside h2, .answers-aside > p, .answers-contact > *");
+        const rows = faqs.querySelectorAll<HTMLElement>(".answer-item");
+        gsap.fromTo(intro, { autoAlpha: 0, y: 24, filter: "blur(5px)" }, {
+          autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.8,
+          stagger: 0.1, ease: "power3.out",
+          scrollTrigger: { trigger: faqs, start: "top 78%", once: true },
+        });
+        gsap.fromTo(rows, { autoAlpha: 0, y: 26, filter: "blur(5px)" }, {
+          autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.85,
+          stagger: 0.12, ease: "power3.out",
+          scrollTrigger: { trigger: faqs, start: "top 72%", once: true },
+        });
+      }
     }, main);
 
     return () => context.revert();
@@ -315,7 +330,7 @@ export default function Home() {
   return <main ref={mainRef}>
     <SiteHeader />
     <section className="hero hero-reference" id="home">
-      <div className="hero-globe" aria-hidden="true"><GlobeStudy style={{ width: "100%", height: "100%" }} /></div>
+      <div className="hero-globe" aria-hidden="true"><GlobeStudy baseColor="#F22C59" style={{ width: "100%", height: "100%" }} /></div>
       <p className="ref-hint"><i aria-hidden="true"/> MOVE FREELY · STAY PRIVATE</p>
       <div className="ref-announcement"><i aria-hidden="true"/> PRIVATE BY DESIGN <span>·</span> ONE TAP TO CONNECT</div>
       <div className="ref-copy">
@@ -323,9 +338,6 @@ export default function Home() {
         <p>Traverse VPN adds a layer of protection on public Wi-Fi, masks your IP, and helps keep your browsing private at home, while travelling, and wherever you connect.</p>
         <div className="ref-actions"><a className="ref-button ref-button-primary" href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse VPN <span aria-hidden="true">↗</span></a><a className="ref-button ref-button-secondary" href="#services">Explore protection <span aria-hidden="true">↗</span></a></div>
       </div>
-      <div className="ref-bottom-left"><span>PRIVATE CONNECTIONS, EVERYWHERE</span><strong>1M<sup>+</sup></strong><small>PEOPLE PROTECTED WORLDWIDE</small></div>
-      <div className="ref-feature-pills" aria-label="VPN features"><span><i>01</i> AES-256</span><span><i>02</i> IP MASKING</span><span><i>03</i> NO LOGS</span><span><i>04</i> GLOBAL SERVERS</span></div>
-      <div className="ref-bottom-right"><div className="ref-status-dots" aria-hidden="true"><i/><i/><i/><i/></div><strong>50+</strong><span>FAST SERVER LOCATIONS</span></div>
     </section>
     <div className="bottom-glass-bar" aria-hidden="true"><div className="bottom-glass-layers">{bottomBlurLayers.map((layer) => <div key={layer.blur} style={{ backdropFilter: `blur(${layer.blur}) saturate(120%)`, WebkitBackdropFilter: `blur(${layer.blur}) saturate(120%)`, maskImage: `linear-gradient(to bottom, transparent 0%, transparent ${layer.from}, black ${layer.to}, black 100%)`, WebkitMaskImage: `linear-gradient(to bottom, transparent 0%, transparent ${layer.from}, black ${layer.to}, black 100%)` }} />)}</div></div>
 
@@ -334,7 +346,7 @@ export default function Home() {
       <div className="about-projects">1M+ USERS</div>
       <div className="about-images"><img className="about-left" src="/images/vpn/photos/airport-work.jpg" alt="Traveler working on a laptop at the airport"/><img className="about-right" src="/images/vpn/photos/city-phone.jpg" alt="Traveler using a phone in the city at night"/></div>
       <div className="about-heading">
-        <SectionLabel japanese="">WHY TRAVERSE</SectionLabel>
+        <SectionLabel>WHY TRAVERSE</SectionLabel>
         <h2><ScrollRevealWords text="Private connections"/><br className="desktop-break"/> <ScrollRevealWords text="for everyday browsing,"/><br className="desktop-break"/> <ScrollRevealWords text="wherever life takes you."/></h2>
       </div>
       <div className="about-meta">PRIVATE BY DESIGN</div>
@@ -343,9 +355,9 @@ export default function Home() {
 
     <section className="services section" id="services" ref={servicesRef}>
       <GridLines/>
-      <aside className="services-aside"><SectionLabel japanese="VPNの機能">VPN FEATURES</SectionLabel><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div><div className="scope-cta"><b>50+ FAST SERVERS WORLDWIDE</b><p>Private browsing, wherever you connect.</p><a className="project-button" href="https://links.traversevpn.com/s/Ugp0lRJV"><span>GET TRAVERSE VPN</span><Plus/></a></div></aside>
+      <aside className="services-aside"><SectionLabel>VPN FEATURES</SectionLabel><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div><div className="scope-cta"><b>50+ FAST SERVERS WORLDWIDE</b><p>Private browsing, wherever you connect.</p><a className="project-button" href="https://links.traversevpn.com/s/Ugp0lRJV"><span>GET TRAVERSE VPN</span><Plus/></a></div></aside>
       <div className="service-list">{services.map((service) => <article className="service" key={service.number}>
-        <div className="service-head"><span>{service.number} / <i>{service.japanese}</i></span><h3>{service.title}</h3></div>
+        <div className="service-head"><span>{service.number}</span><h3>{service.title}</h3></div>
         <div className="service-images">{service.images.map((image, index) => <img key={image} src={image} alt={service.alt[index]}/>)}</div>
         <div className="service-body"><div><p>{service.description}</p><div className="service-price">STARTING FROM <b>{service.price}</b></div></div><div className="tags">{service.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
       </article>)}</div>
@@ -355,7 +367,7 @@ export default function Home() {
     <section className="features section" id="how-we-work">
       <GridLines />
       <div className="features-heading">
-        <div className="features-intro"><SectionLabel japanese="特徴と強み">VPN PROTECTION</SectionLabel><p>A closer look at how Traverse helps protect your connection, mask your IP, and browse with more privacy.</p></div>
+        <div className="features-intro"><SectionLabel>VPN PROTECTION</SectionLabel><p>A closer look at how Traverse helps protect your connection, mask your IP, and browse with more privacy.</p></div>
         <h2>How Traverse Protects You</h2>
       </div>
       <div className="features-cards">
@@ -368,11 +380,11 @@ export default function Home() {
           <div className="metric metric-response"><span className="metric-icon dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Fast Servers <i></i></b><small>50+ locations</small></span></div>
           <div className="metric metric-conversion"><span className="metric-icon black"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 6-6 4 3 7-8M14 6h6v6"/></svg></span><span><b>AES-256</b><small>Encryption</small></span></div>
         </article>
-        <article className="feature-expertise"><div className="expertise-top"><b>[ PRIVACY ]</b><span>世界中で保護</span></div><div className="expertise-copy"><strong>50+</strong><span>Fast<br/>Server<br/>Locations</span></div></article>
+        <article className="feature-expertise"><div className="expertise-top"><b>[ PRIVACY ]</b></div><div className="expertise-copy"><strong>50+</strong><span>Fast<br/>Server<br/>Locations</span></div></article>
       </div>
       <div className="feature-bottom-cards">
         <article className="bottom-feature simplicity-card">
-          <header><h3>Encryption</h3><span>暗号化と保護</span></header>
+          <header><h3>Encryption</h3></header>
           <img className="bottom-feature-art" src="/images/vpn/photos/cafe-laptop.jpg" alt="Person browsing on a laptop in a café"/>
           <div className="bottom-feature-copy"><h4>Private by default.</h4><p>AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.</p></div>
         </article>
@@ -391,19 +403,26 @@ export default function Home() {
 
     <ProjectStories />
 
-    <section className="pricing section platform-pricing" id="pricing">
+    <section className="pricing section n-pricing" id="pricing">
       <GridLines />
-      <div className="pricing-heading platform-pricing-heading">
-        <div className="platform-pricing-title"><h2>VPN Plans</h2><div className="platform-pricing-meta"><div><b>005</b><span>Traverse VPN</span></div><p>Simple plans for private browsing wherever you connect.</p><small>Choose weekly, monthly, or annual protection and connect across your devices.</small></div></div>
+      <div className="n-pricing-inner">
+        <div className="n-pricing-intro"><SectionLabel japanese="価格と価値">PRICING</SectionLabel><p>Simple protection plans for your devices, wherever life takes you.</p></div>
+        <div className="n-pricing-toolbar"><h2>Packages</h2><div className="n-billing-control" aria-label="Billing period"><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button><span>Save up to 50%</span></div></div>
+        <div className="n-plan-grid">{pricingPlans.map((plan, index) => {
+          const price = annualBilling ? plan.yearly : plan.monthly;
+          const interval = plan.name === "Weekly" ? "week" : "month";
+          return <article className={`n-plan-card${index === 1 ? " n-plan-card-featured" : ""}`} key={plan.name}>
+            <div className="n-plan-main">
+              <div className="n-plan-kicker"><span>00{index + 1}. /</span><span>PRIVATE CONNECTION</span></div>
+              <div className="n-plan-title-row"><h3>{plan.name === "Yearly" ? "Annual" : plan.name} Plan</h3>{index === 1 && <span className="n-popular">Popular</span>}</div>
+              <p className="n-plan-description">{plan.audience}.</p>
+              <div className="n-plan-price"><span>$</span><strong>{price}</strong><small>/{interval}{annualBilling && interval === "month" ? ", billed annually" : ""}</small></div>
+            </div>
+            <div className="n-plan-details"><span className="n-list-label">What's included</span><ul>{plan.features.slice(0, 4).map(feature => <li key={feature}>{feature}</li>)}</ul><span className="n-list-label n-extras-label">Extras</span><ul>{plan.features.slice(4).map(feature => <li key={feature}>{feature}</li>)}</ul></div>
+            <div className="n-plan-footer"><a href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse VPN <span aria-hidden="true">↗</span></a><p>{plan.save}</p></div>
+          </article>;
+        })}</div>
       </div>
-      <div className="platform-pricing-rows">{pricingPlans.map(plan => <article className="platform-price-row" key={plan.name}>
-        <div className="platform-plan-visual"><img src={plan.image} alt=""/><div className="platform-plan-visual-shade"/><h3>{plan.name}</h3><span>{plan.audience}</span></div>
-        <div className="platform-price-cell"><span className="platform-cell-label">Price</span><strong>${yearlyPlans.includes(plan.name) ? plan.yearly : plan.monthly}</strong><div className="platform-billing"><span className={!yearlyPlans.includes(plan.name) ? "active" : ""}>Monthly</span><button type="button" aria-label={`Switch ${plan.name} to ${yearlyPlans.includes(plan.name) ? "monthly" : "yearly"} billing`} aria-pressed={yearlyPlans.includes(plan.name)} onClick={() => setYearlyPlans(current => current.includes(plan.name) ? current.filter(name => name !== plan.name) : [...current, plan.name])}><i/></button><span className={yearlyPlans.includes(plan.name) ? "active" : ""}>Yearly</span></div><small className="platform-save">{plan.save}</small></div>
-        <div className="platform-plan-info"><div><span className="platform-cell-label">Plan</span><strong>{plan.plan}</strong></div><div><span className="platform-cell-label">Devices</span><strong>{plan.seats}</strong></div></div>
-        <ul className="platform-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-        <div className="platform-plan-action"><a href="https://links.traversevpn.com/s/Ugp0lRJV">Get protection <span aria-hidden="true">↗</span></a></div>
-      </article>)}</div>
-      <a className="platform-enterprise" href="https://traversevpn.com/">Explore Traverse VPN <span aria-hidden="true">↗</span></a>
     </section>
 
     <JourneySection />

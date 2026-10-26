@@ -385,7 +385,7 @@ export default function Home() {
         <article className="bottom-feature simplicity-card">
           <header><h3>Encryption</h3></header>
           <img className="bottom-feature-art" src="/images/vpn/photos/cafe-laptop.jpg" alt="Person browsing on a laptop in a café"/>
-          <div className="bottom-feature-copy"><h4>Private by default.</h4><p>AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.</p></div>
+          <div className="bottom-feature-copy"><h4>Encryption for every connection.</h4><p>AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.</p></div>
         </article>
         <article className="bottom-feature growth-card">
           <header><h3>Global Access</h3></header>

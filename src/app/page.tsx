@@ -38,7 +38,7 @@ const services = [
 ];
 
 function GridLines() {
-  return <div className="grid-lines" aria-hidden="true"><i/><i/><i/><i/></div>;
+  return <div className="grid-lines" aria-hidden="true"><i/><i/><i/></div>;
 }
 
 function Plus() { return <span className="plus" aria-hidden="true">+</span>; }
@@ -47,10 +47,6 @@ function ScrollRevealWords({ text }: { text: string }) {
   return <>{text.split(/(\s+)/).map((part, index) => part.trim()
     ? <span className="about-reveal-word" key={index}>{part}</span>
     : part)}</>;
-}
-
-function ScrollRevealParagraph({ text }: { text: string }) {
-  return <p><ScrollRevealWords text={text}/></p>;
 }
 
 const bottomBlurLayers = [
@@ -125,7 +121,7 @@ function JourneySection() {
   }, []);
   return <section className="journey-section section" id="journey" ref={sectionRef}>
     <GridLines/><div className="journey-grid">
-      <div className="journey-left"><div className="journey-intro"><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote><div className="journey-person"><img loading="lazy" decoding="async" src="/images/journey/erik.webp" alt=""/><div><strong>Traverse VPN</strong><span>Privacy for<br/><b>Every connection</b></span></div></div></div></div>
+      <div className="journey-left"><div className="journey-intro"><h2>Your<br/>Journey</h2><p>From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.</p></div><div className="journey-quote"><div className="journey-quote-mark" aria-hidden="true">“</div><blockquote>Connect in a tap, protect your<br className="journey-desktop-break"/> traffic with strong encryption, and<br className="journey-desktop-break"/> take a more private connection<br className="journey-desktop-break"/> wherever you go.</blockquote></div></div>
       <div className="journey-visual" aria-hidden="true"><div className="journey-image-frame">{journeySteps.map((step,index)=><img loading="lazy" decoding="async" key={step.year} className={activeStep===index?"active":""} src={step.image} alt=""/>)}</div></div>
       <div className="journey-timeline" style={{"--journey-progress":progress} as CSSProperties}><ol>{journeySteps.map((step,index)=><li className={`journey-step${activeStep===index?" active":""}`} key={step.year}><span className="journey-node" aria-hidden="true"/><img loading="lazy" decoding="async" className="journey-mobile-image" src={step.image} alt=""/><span className="journey-year">{step.year}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div>
     </div>
@@ -152,8 +148,47 @@ const projectAnswers = [
   { question:"How much does Traverse VPN cost?", answer:"Plans include weekly, monthly, and annual options. The current listed prices are $1.49 per week, $3.99 per month, or $1.99 per month with annual billing; confirm the price in the official checkout before subscribing." },
 ];
 
+function ProjectAnswerItem({ item, index }: { item: (typeof projectAnswers)[number]; index: number }) {
+  const [open, setOpen] = useState(index === 0);
+  const panelId = `answer-panel-${index + 1}`;
+
+  const toggleAnswer = () => {
+    const panel = document.getElementById(panelId);
+    if (!panel) return;
+
+    const opening = !open;
+    const currentHeight = panel.getBoundingClientRect().height;
+    const currentOpacity = Number.parseFloat(window.getComputedStyle(panel).opacity);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    gsap.killTweensOf(panel);
+    setOpen(opening);
+
+    gsap.fromTo(panel,
+      { height: currentHeight, autoAlpha: Number.isFinite(currentOpacity) ? currentOpacity : 0 },
+      {
+        height: opening ? panel.scrollHeight : 0,
+        autoAlpha: opening ? 1 : 0,
+        duration: reducedMotion ? 0 : opening ? 0.48 : 0.34,
+        ease: opening ? "power3.out" : "power2.inOut",
+        onComplete: () => { if (opening) gsap.set(panel, { height: "auto" }); },
+      },
+    );
+  };
+
+  return <article className="answer-item" data-open={open}>
+    <button className="answer-trigger" type="button" aria-expanded={open} aria-controls={panelId} onClick={toggleAnswer}>
+      <span className="answer-number">{String(index + 1).padStart(2, "0")}</span>
+      <span className="answer-question">{item.question}</span>
+      <i aria-hidden="true"/>
+    </button>
+    <div className="answer-panel" id={panelId} aria-hidden={!open} style={{ height: index === 0 ? "auto" : 0, opacity: index === 0 ? 1 : 0 }}>
+      <p>{item.answer}</p>
+    </div>
+  </article>;
+}
+
 function ProjectAnswers() {
-  return <section className="project-answers section" id="faqs"><GridLines/><div className="answers-layout"><div className="answers-aside"><h2>Good to<br/>know.</h2><p>Quick answers about VPN privacy, connections, devices, and Traverse plans.</p><div className="answers-contact"><span>MORE ABOUT TRAVERSE?</span><a href="https://traversevpn.com/">Visit Traverse VPN <b aria-hidden="true">↗</b></a></div></div><div className="answers-list">{projectAnswers.map((item,index)=><details className="answer-item" key={item.question} open={index===0}><summary><span className="answer-number">{String(index+1).padStart(2,"0")}</span><span className="answer-question">{item.question}</span><i aria-hidden="true"/></summary><p>{item.answer}</p></details>)}</div></div></section>;
+  return <section className="project-answers section" id="faqs"><GridLines/><div className="answers-layout"><div className="answers-aside"><h2>Good to<br/>know.</h2><p>Quick answers about VPN privacy, connections, devices, and Traverse plans.</p><div className="answers-contact"><span>MORE ABOUT TRAVERSE?</span><a href="https://traversevpn.com/">Visit Traverse VPN <b aria-hidden="true">↗</b></a></div></div><div className="answers-list">{projectAnswers.map((item,index)=><ProjectAnswerItem item={item} index={index} key={item.question}/>)}</div></div></section>;
 }
 
 export default function Home() {
@@ -183,7 +218,6 @@ export default function Home() {
     main.classList.add("gsap-about-motion-ready");
     const context = gsap.context(() => {
       const headingWords = section.querySelectorAll<HTMLElement>(".about-heading h2 .about-reveal-word");
-      const paragraphWords = section.querySelectorAll<HTMLElement>(".about-quote .about-reveal-word");
 
       if (headingWords.length) gsap.to(headingWords, {
         opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45,
@@ -191,15 +225,6 @@ export default function Home() {
         scrollTrigger: {
           trigger: section.querySelector(".about-heading h2"),
           start: "top 85%", end: "bottom 38%", scrub: 0.5, invalidateOnRefresh: true,
-        },
-      });
-
-      if (paragraphWords.length) gsap.to(paragraphWords, {
-        opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5,
-        stagger: { each: 0.018 }, ease: "none",
-        scrollTrigger: {
-          trigger: section.querySelector(".about-quote"),
-          start: "top 92%", end: "bottom 18%", scrub: 0.8, invalidateOnRefresh: true,
         },
       });
     }, section);
@@ -264,7 +289,7 @@ export default function Home() {
 
       const reveals = [
         [".features", ".features-intro p, .features-heading > h2, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
-        [".n-pricing", ".n-pricing-intro > *, .n-pricing-toolbar > *, .n-plan-card"],
+        [".n-pricing", ".n-pricing-toolbar > *, .n-plan-card"],
         [".journey-section", ".journey-intro > *, .journey-quote > *, .journey-visual, .journey-step"],
         [".project-stories", ".stories-heading h2, .story-card, .stories-foot > *"],
         [".visuvate-footer", ".visuvate-footer-top > *, .visuvate-social-grid > *, .visuvate-footer-group > *, .visuvate-copyright"],
@@ -346,7 +371,7 @@ export default function Home() {
         <h2><ScrollRevealWords text="Private connections"/><br className="desktop-break"/> <ScrollRevealWords text="for everyday browsing,"/><br className="desktop-break"/> <ScrollRevealWords text="wherever life takes you."/></h2>
       </div>
       <div className="about-meta">VPN PROTECTION</div>
-      <div className="about-quote"><ScrollRevealParagraph text="Traverse VPN helps keep your connection private wherever you browse. Strong encryption and IP masking add protection on public Wi-Fi, at home, and while travelling. Connect with one tap and choose from fast servers around the world."/></div>
+      <div className="about-quote"><p>Traverse VPN helps keep your connection private wherever you browse. Strong encryption and IP masking add protection on public Wi-Fi, at home, and while travelling. Connect with one tap and choose from fast servers around the world.</p></div>
     </section>
 
     <section className="services section" id="services" ref={servicesRef}>
@@ -359,6 +384,8 @@ export default function Home() {
       </article>)}</div>
       <div className="availability"><span>STRONG <b>AES-256</b></span><span>BUILT FOR <b>YOUR PRIVACY</b></span></div>
     </section>
+
+    <JourneySection />
 
     <section className="features section" id="how-we-work">
       <GridLines />
@@ -401,7 +428,6 @@ export default function Home() {
     <section className="pricing section n-pricing" id="pricing">
       <GridLines />
       <div className="n-pricing-inner">
-        <div className="n-pricing-intro"><p>Simple protection plans for your devices, wherever life takes you.</p></div>
         <div className="n-pricing-toolbar"><h2>Packages</h2><div className="n-billing-control" aria-label="Billing period"><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button><span>Save up to 50%</span></div></div>
         <div className="n-plan-grid">{pricingPlans.map((plan, index) => {
           const price = annualBilling ? plan.yearly : plan.monthly;
@@ -420,7 +446,6 @@ export default function Home() {
       </div>
     </section>
 
-    <JourneySection />
     <ProjectAnswers />
     <footer className="visuvate-footer">
       <div className="visuvate-footer-wordmark" aria-hidden="true">Traverse</div>

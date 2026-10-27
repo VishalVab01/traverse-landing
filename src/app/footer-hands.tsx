@@ -63,7 +63,7 @@ export default function FooterHands() {
           const jitter = influence > 0.04 ? Math.round(influence * 4 + shimmer * 2) : 0;
           const glyph = glyphs[Math.min(glyphs.length - 1, index + jitter)];
           const opacity = Math.min(0.98, 0.38 + tone * 0.43 + influence * 0.28) * alpha;
-          context.fillStyle = `rgba(232, 236, 244, ${opacity})`;
+          context.fillStyle = `rgba(242, 44, 89, ${opacity})`;
           context.fillText(glyph, x, y);
         }
       }
@@ -213,7 +213,6 @@ export default function FooterHands() {
           <div className="footer-hand-art"><canvas data-image={src} /></div>
         </div>
       ))}
-      <span className="footer-hands-glow" />
     </div>
   );
 }

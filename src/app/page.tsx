@@ -281,10 +281,6 @@ export default function Home() {
             scrollTrigger: { trigger: service, start: "top 78%", once: true },
           });
         });
-        gsap.fromTo(services.querySelectorAll<HTMLElement>(".availability > *"), { autoAlpha: 0, y: 14 }, {
-          autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power2.out",
-          scrollTrigger: { trigger: services, start: "bottom 80%", once: true },
-        });
       }
 
       const reveals = [
@@ -382,7 +378,6 @@ export default function Home() {
         <div className="service-images">{service.images.map((image, index) => <img loading="lazy" decoding="async" key={image} src={image} alt={service.alt[index]}/>)}</div>
         <div className="service-body"><div><p>{service.description}</p><div className="service-price">STARTING FROM <b>{service.price}</b></div></div><div className="tags">{service.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
       </article>)}</div>
-      <div className="availability"><span>STRONG <b>AES-256</b></span><span>BUILT FOR <b>YOUR PRIVACY</b></span></div>
     </section>
 
     <JourneySection />

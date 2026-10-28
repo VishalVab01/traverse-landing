@@ -129,14 +129,14 @@ function JourneySection() {
 }
 
 const clientTestimonials = [
-  { number:"01", type:"PUBLIC WI-FI", quote:"Sample customer feedback: Traverse helps protect my connection when I’m using Wi-Fi at cafés, airports, and hotels.", role:"VPN user", accent:"rose" },
-  { number:"02", type:"GLOBAL ACCESS", quote:"Sample customer feedback: Switching server locations is simple, and I can browse while travelling with more peace of mind.", role:"Frequent traveller", accent:"ink" },
-  { number:"03", type:"ONLINE PRIVACY", quote:"Sample customer feedback: I wanted an easy way to mask my IP and add encryption to my everyday internet connection.", role:"Privacy minded user", accent:"silver" },
+  { quote:"Add protection when you connect at cafés, airports, and hotels.", accent:"rose" },
+  { quote:"Switch server locations while travelling and browse with added peace of mind.", accent:"ink" },
+  { quote:"Mask your IP and add encryption to everyday internet connections.", accent:"silver" },
 ];
 
 function ProjectStories() {
   return <section className="project-stories section" id="stories"><GridLines/><div className="stories-inner"><div className="stories-heading"><h2>Privacy in<br/>their words.</h2></div>
-    <div className="story-cards">{clientTestimonials.map(story=><article className={`story-card testimonial-${story.accent}`} key={story.number}><div className="story-meta"><span>{story.number} / {story.type}</span><span>SAMPLE</span></div><span className="testimonial-mark" aria-hidden="true">“</span><blockquote>{story.quote}</blockquote><div className="story-attribution"><span className="story-avatar" aria-hidden="true">{story.number}</span><span><b>Sample VPN user</b><small>{story.role} · Sample story</small></span><i>PREVIEW</i></div></article>)}</div><div className="stories-foot"><span>HAVE A STORY TO SHARE?</span><a href="https://traversevpn.com/">Explore Traverse VPN <b aria-hidden="true">↗</b></a></div>
+    <div className="story-cards">{clientTestimonials.map(story=><article className={`story-card testimonial-${story.accent}`} key={story.accent}><span className="testimonial-mark" aria-hidden="true">“</span><blockquote>{story.quote}</blockquote></article>)}</div>
   </div></section>;
 }
 
@@ -241,7 +241,7 @@ export default function Home() {
         { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07, ease: "power2.out", delay: 0.1 });
       const hero = main.querySelector(".hero-reference");
       if (hero) {
-        const intro = hero.querySelectorAll(".ref-hint, .ref-announcement, .ref-copy h1, .ref-copy > p, .ref-actions > *");
+        const intro = hero.querySelectorAll(".ref-copy h1, .ref-copy > p, .ref-actions > *");
         gsap.fromTo(intro, { autoAlpha: 0, y: 26, filter: "blur(8px)" }, {
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 1.05,
           stagger: { each: 0.09, from: "start" }, ease: "power3.out", delay: 0.15,
@@ -253,12 +253,6 @@ export default function Home() {
 
       const about = main.querySelector(".about");
       if (about) {
-        const items = about.querySelectorAll<HTMLElement>(".about-projects, .about-meta");
-        gsap.fromTo(items, { autoAlpha: 0, y: 22, filter: "blur(6px)" }, {
-          autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.9,
-          stagger: 0.12, ease: "power3.out",
-          scrollTrigger: { trigger: about, start: "top 72%", once: true },
-        });
         gsap.fromTo(about.querySelectorAll<HTMLElement>(".about-left, .about-right"), { autoAlpha: 0, filter: "blur(8px)" }, {
           autoAlpha: 1, filter: "blur(0px)", duration: 1.2, stagger: 0.16, ease: "power2.out",
           scrollTrigger: { trigger: about, start: "top 72%", once: true },
@@ -287,7 +281,7 @@ export default function Home() {
         [".features", ".features-intro p, .features-heading > h2, .feature-copy-bottom > *, .feature-visual > *, .feature-expertise > *, .feature-bottom-cards > *"],
         [".n-pricing", ".n-pricing-toolbar > *, .n-plan-card"],
         [".journey-section", ".journey-intro > *, .journey-quote > *, .journey-visual, .journey-step"],
-        [".project-stories", ".stories-heading h2, .story-card, .stories-foot > *"],
+        [".project-stories", ".stories-heading h2, .story-card"],
         [".visuvate-footer", ".visuvate-footer-top > *, .visuvate-social-grid > *, .visuvate-footer-group > *, .visuvate-copyright"],
       ];
 
@@ -348,8 +342,6 @@ export default function Home() {
     <SiteHeader />
     <section className="hero hero-reference" id="home">
       <div className="hero-globe" aria-hidden="true"><GlobeStudy baseColor="#F22C59" style={{ width: "100%", height: "100%" }} /></div>
-      <p className="ref-hint"><i aria-hidden="true"/> VPN PROTECTION · EVERYWHERE YOU CONNECT</p>
-      <div className="ref-announcement"><i aria-hidden="true"/> PROTECT EVERY CONNECTION <span>·</span> ONE TAP TO CONNECT</div>
       <div className="ref-copy">
         <h1>Browse freely<br/>on any <mark>network.</mark></h1>
         <p>Traverse VPN adds a layer of protection on public Wi-Fi, masks your IP, and helps keep your browsing private at home, while travelling, and wherever you connect.</p>
@@ -360,13 +352,11 @@ export default function Home() {
 
     <section className="about section" id="about" ref={aboutRef}>
       <GridLines/>
-      <div className="about-projects">1M+ USERS</div>
       <div className="about-images"><img loading="lazy" decoding="async" className="about-left" src="/images/vpn/photos/airport-work.webp" alt="Traveler working on a laptop at the airport"/><img loading="lazy" decoding="async" className="about-right" src="/images/vpn/photos/city-phone.webp" alt="Traveler using a phone in the city at night"/></div>
       <div className="about-heading">
 
         <h2><ScrollRevealWords text="Private connections"/><br className="desktop-break"/> <ScrollRevealWords text="for everyday browsing,"/><br className="desktop-break"/> <ScrollRevealWords text="wherever life takes you."/></h2>
       </div>
-      <div className="about-meta">VPN PROTECTION</div>
       <div className="about-quote"><p>Traverse VPN helps keep your connection private wherever you browse. Strong encryption and IP masking add protection on public Wi-Fi, at home, and while travelling. Connect with one tap and choose from fast servers around the world.</p></div>
     </section>
 
@@ -423,7 +413,7 @@ export default function Home() {
     <section className="pricing section n-pricing" id="pricing">
       <GridLines />
       <div className="n-pricing-inner">
-        <div className="n-pricing-toolbar"><h2>Packages</h2><div className="n-billing-control" aria-label="Billing period"><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button><span>Save up to 50%</span></div></div>
+        <div className="n-pricing-toolbar"><h2>Packages</h2><div className="n-billing-control" role="group" aria-label="Billing period"><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button></div></div>
         <div className="n-plan-grid">{pricingPlans.map((plan, index) => {
           const price = annualBilling ? plan.yearly : plan.monthly;
           const interval = plan.name === "Weekly" ? "week" : "month";

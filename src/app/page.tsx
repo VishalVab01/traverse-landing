@@ -261,7 +261,7 @@ export default function Home() {
 
       const services = main.querySelector(".services");
       if (services) {
-        const asideItems = services.querySelectorAll<HTMLElement>(".services-intro h2 span, .services-intro p, .scope-cta > *");
+        const asideItems = services.querySelectorAll<HTMLElement>(".services-intro h2 span, .services-intro p");
         gsap.fromTo(asideItems, { autoAlpha: 0, y: 28, filter: "blur(6px)" }, {
           autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.85,
           stagger: 0.1, ease: "power3.out",
@@ -362,7 +362,7 @@ export default function Home() {
 
     <section className="services section" id="services" ref={servicesRef}>
       <GridLines/>
-      <aside className="services-aside"><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div><div className="scope-cta"><b>50+ FAST SERVERS WORLDWIDE</b><p>Private browsing, wherever you connect.</p><a className="project-button" href="https://links.traversevpn.com/s/Ugp0lRJV"><span>GET TRAVERSE VPN</span><Plus/></a></div></aside>
+      <aside className="services-aside"><div className="services-intro"><h2><span>VPN</span><br/><span>Protection</span></h2><p>Encryption, privacy, and fast global access for the connections you use every day.</p></div></aside>
       <div className="service-list">{services.map((service) => <article className="service" key={service.number}>
         <div className="service-head"><span>{service.number}</span><h3>{service.title}</h3></div>
         <div className="service-images">{service.images.map((image, index) => <img loading="lazy" decoding="async" key={image} src={image} alt={service.alt[index]}/>)}</div>

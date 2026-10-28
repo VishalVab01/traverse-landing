@@ -391,9 +391,8 @@ export default function Home() {
       </div>
       <div className="feature-bottom-cards">
         <article className="bottom-feature simplicity-card">
-          <header><h3>Encryption</h3></header>
           <img loading="lazy" decoding="async" className="bottom-feature-art" src="/images/vpn/photos/cafe-laptop.webp" alt="Person browsing on a laptop in a café"/>
-          <div className="bottom-feature-copy"><h4>Encryption for every connection.</h4><p>AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.</p></div>
+          <div className="simplicity-copy"><div className="bottom-feature-copy"><h4>Encryption for every connection.</h4><p>AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.</p></div></div>
         </article>
         <article className="bottom-feature growth-card">
           <header><h3>Global Access</h3></header>
@@ -401,9 +400,8 @@ export default function Home() {
           <div className="growth-stat"><span>↗ &nbsp; GLOBAL NETWORK</span><strong>50+</strong><p>Fast server locations for your connection</p></div>
         </article>
         <article className="bottom-feature execution-card">
-          <header><b>Traverse VPN <i className="mini-mark"><i/><i/><i/><i/></i></b><span className="launch-pill"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><strong>One tap</strong><small>Connect</small></span></span></header>
           <img loading="lazy" decoding="async" className="bottom-feature-art" src="/images/vpn/photos/airport-work.webp" alt="Traveler using a laptop while waiting at an airport"/>
-          <div className="bottom-feature-copy"><h4>Easy to Connect</h4><p>Choose a server. Tap connect.<br/>Browse with more privacy.</p></div>
+          <div className="execution-copy"><div className="bottom-feature-copy"><h4>Easy to Connect</h4><p>Choose a server. Tap connect.<br/>Browse with more privacy.</p></div></div>
         </article>
       </div>
     </section>
@@ -417,6 +415,7 @@ export default function Home() {
         <div className="n-plan-grid">{pricingPlans.map((plan, index) => {
           const price = annualBilling ? plan.yearly : plan.monthly;
           const interval = plan.name === "Weekly" ? "week" : "month";
+          const annualSavings = Math.max(0, (Number(plan.monthly) - Number(plan.yearly)) * 12);
           return <article className={`n-plan-card${index === 1 ? " n-plan-card-featured" : ""}`} key={plan.name}>
             <div className="n-plan-main">
               <div className="n-plan-kicker"><span>00{index + 1}. /</span><span>PRIVATE CONNECTION</span></div>
@@ -425,7 +424,7 @@ export default function Home() {
               <div className="n-plan-price"><span>$</span><strong>{price}</strong><small>/{interval}{annualBilling && interval === "month" ? ", billed annually" : ""}</small></div>
             </div>
             <div className="n-plan-details"><span className="n-list-label">What's included</span><ul>{plan.features.slice(0, 4).map(feature => <li key={feature}>{feature}</li>)}</ul><span className="n-list-label n-extras-label">Extras</span><ul>{plan.features.slice(4).map(feature => <li key={feature}>{feature}</li>)}</ul></div>
-            <div className="n-plan-footer"><a href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse VPN <span aria-hidden="true">↗</span></a><p>{plan.save}</p></div>
+            <div className="n-plan-footer"><a href="https://links.traversevpn.com/s/Ugp0lRJV">Buy plan <span aria-hidden="true">↗</span></a><p className={`n-plan-savings${annualSavings ? " has-savings" : ""}`}>{annualSavings ? <><strong>Save ${annualSavings.toFixed(2)}/year</strong><span>with annual billing</span></> : <span>No annual savings on this plan</span>}</p></div>
           </article>;
         })}</div>
       </div>

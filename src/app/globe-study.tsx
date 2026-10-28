@@ -5,7 +5,9 @@
 import * as React from "react"
 import { useEffect, useRef } from "react"
 
-const MAX_DPR = 2
+// Keep the animated canvas inexpensive on phones. The globe stays sharp at
+// CSS resolution while avoiding a 4x pixel workload on high-density screens.
+const MAX_DPR = 1.25
 const FACE = '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif'
 const QA = Math.PI / 36
 const MW = 288
@@ -260,6 +262,8 @@ function __OriginkitBase_GlobeStudy(props: Props) {
         }
 
         let raf = 0
+        let visible = true
+        let lastFrame = 0
         let last = performance.now()
         let clock = 0
         let spin = 2.1
@@ -274,13 +278,22 @@ function __OriginkitBase_GlobeStudy(props: Props) {
         const land8: number[][] = []
 
         const render = (now: number) => {
+            raf = 0
+            if (!visible || document.hidden) return
+            const mobile = window.matchMedia("(max-width: 700px)").matches
+            const frameInterval = mobile ? 1000 / 30 : 1000 / 45
+            if (now - lastFrame < frameInterval) {
+                raf = requestAnimationFrame(render)
+                return
+            }
+            lastFrame = now
             const dt = Math.min(0.05, (now - last) / 1000)
             last = now
             const v = vRef.current
             const sp = v.speed as number
             clock += dt * sp
 
-            const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
+            const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1 : MAX_DPR)
             const cw = sizeRef.current.w || canvas.clientWidth || 1200
             const ch = sizeRef.current.h || canvas.clientHeight || 800
             const bw = Math.max(1, Math.round(cw * dpr))
@@ -293,8 +306,9 @@ function __OriginkitBase_GlobeStudy(props: Props) {
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
             ctx.clearRect(0, 0, cw, ch)
 
-            const key = (v.density as number) + "|" + (v.letters as number) + "|" + (v.phrase as string)
-            if (key !== builtKey) build(v.density as number, v.letters as number, v.phrase as string)
+            const density = (v.density as number) * (mobile ? 0.58 : 1)
+            const key = density + "|" + (v.letters as number) + "|" + (v.phrase as string)
+            if (key !== builtKey) build(density, v.letters as number, v.phrase as string)
 
             const u = Math.min(cw, ch)
             const ptr = ptrRef.current
@@ -536,10 +550,28 @@ function __OriginkitBase_GlobeStudy(props: Props) {
         window.addEventListener("pointerup", onUp)
         window.addEventListener("pointercancel", onUp)
         canvas.addEventListener("wheel", onWheel, { passive: false })
+        const observer = new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting
+            if (visible && !document.hidden && !raf) raf = requestAnimationFrame(render)
+            if (!visible && raf) {
+                cancelAnimationFrame(raf)
+                raf = 0
+            }
+        }, { rootMargin: "100px" })
+        observer.observe(canvas)
+        const onVisibilityChange = () => {
+            if (document.hidden) {
+                if (raf) cancelAnimationFrame(raf)
+                raf = 0
+            } else if (visible && !raf) raf = requestAnimationFrame(render)
+        }
+        document.addEventListener("visibilitychange", onVisibilityChange)
         raf = requestAnimationFrame(render)
 
         return () => {
             cancelAnimationFrame(raf)
+            observer.disconnect()
+            document.removeEventListener("visibilitychange", onVisibilityChange)
             canvas.removeEventListener("pointermove", track)
             canvas.removeEventListener("pointerenter", track)
             canvas.removeEventListener("pointerleave", onLeave)

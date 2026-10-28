@@ -413,7 +413,7 @@ export default function Home() {
     <section className="pricing section n-pricing" id="pricing">
       <GridLines />
       <div className="n-pricing-inner">
-        <div className="n-pricing-toolbar"><h2>Packages</h2><div className="n-billing-control" role="group" aria-label="Billing period"><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button></div></div>
+        <div className="n-pricing-toolbar"><h2>Packages</h2><div className={`n-billing-control${annualBilling ? " annual" : ""}`} role="group" aria-label="Billing period"><span className="n-billing-indicator" aria-hidden="true"/><button type="button" className={!annualBilling ? "active" : ""} aria-pressed={!annualBilling} onClick={() => setAnnualBilling(false)}>Monthly</button><button type="button" className={annualBilling ? "active" : ""} aria-pressed={annualBilling} onClick={() => setAnnualBilling(true)}>Annual</button></div></div>
         <div className="n-plan-grid">{pricingPlans.map((plan, index) => {
           const price = annualBilling ? plan.yearly : plan.monthly;
           const interval = plan.name === "Weekly" ? "week" : "month";

@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "headlineLine1": "Browse freely",
+    "headlineLine2": "network.",
+    "description": "Traverse VPN adds a layer of protection on public Wi-Fi, masks your IP, and helps keep your browsing private at home, while travelling, and wherever you connect.",
+    "primaryCta": { "label": "Get Traverse VPN", "href": "https://links.traversevpn.com/s/Ugp0lRJV" },
+    "secondaryCta": { "label": "Explore protection", "href": "#services" }
+  },
+  "about": {
+    "headingLine1": "Private connections",
+    "headingLine2": "for everyday browsing,",
+    "headingLine3": "wherever life takes you.",
+    "copy": "Traverse VPN helps keep your connection private wherever you browse. Strong encryption and IP masking add protection on public Wi-Fi, at home, and while travelling. Connect with one tap and choose from fast servers around the world."
+  },
+  "servicesSection": {
+    "heading": "VPN Protection",
+    "intro": "Encryption, privacy, and fast global access for the connections you use every day.",
+    "items": [
+      { "number": "001.", "title": "Private Connection & Encryption", "description": "Protect your connection with AES-256 encryption. Traverse VPN helps shield your data on public Wi-Fi and keeps your browsing more private.", "price": "Included", "tags": ["AES-256", "IP masking", "DNS leak protection", "Kill Switch", "No WebRTC leaks", "Split tunneling"], "images": [{ "src": "/images/vpn/photos/cafe-laptop.webp", "alt": "Traveler using a laptop in a café" }, { "src": "/images/vpn/photos/night-phone.webp", "alt": "Person using a phone in a city at night" }] },
+      { "number": "002.", "title": "Fast Global Server Access", "description": "Choose from 50+ fast servers to reach content around the world. Enjoy unlimited bandwidth and a connection built for everyday browsing.", "price": "50+ servers", "tags": ["Global locations", "Unlimited bandwidth", "Up to 1 Gbps", "No throttling", "Streaming", "Low latency"], "images": [{ "src": "/images/vpn/photos/airport-work.webp", "alt": "Traveler working at an airport gate" }, { "src": "/images/vpn/photos/city-phone.webp", "alt": "Traveler using a phone on a city street" }] },
+      { "number": "003.", "title": "Safer Public Wi-Fi", "description": "Connect with more confidence at airports, cafés, hotels, and other shared networks. Automatic protection helps keep your data private when you connect.", "price": "Every network", "tags": ["Auto-connect", "Wi-Fi protection", "Encrypted traffic", "Hide your IP", "Private browsing", "Travel ready"], "images": [{ "src": "/images/vpn/photos/cafe-collaboration.webp", "alt": "People using laptops in a café" }, { "src": "/images/vpn/photos/cafe-phone.webp", "alt": "Phone in use in a public indoor space" }] },
+      { "number": "004.", "title": "No-Logs Privacy", "description": "Traverse VPN says it does not collect or share your browsing activity. Open-source protocols and a published no-logs policy help make its approach easier to review.", "price": "Privacy first", "tags": ["No-logs policy", "OpenVPN", "WireGuard", "Independent audits", "No data sharing", "Zero knowledge"], "images": [{ "src": "/images/vpn/photos/night-phone.webp", "alt": "Phone in a city at night" }, { "src": "/images/vpn/photos/travel-desk.webp", "alt": "Travel workspace with a laptop and passport" }] }
+    ]
+  },
+  "journey": {
+    "heading": "Your\nJourney",
+    "intro": "From choosing a plan to browsing with greater privacy, Traverse keeps getting started simple.",
+    "quote": "Connect in a tap, protect your traffic with strong encryption, and take a more private connection wherever you go.",
+    "steps": [
+      { "year": "STEP 01", "title": "Choose your\nTraverse plan", "description": "Pick weekly, monthly, or annual protection for the way you use the internet.", "image": "/images/vpn/photos/cafe-laptop.webp" },
+      { "year": "STEP 02", "title": "Connect to a\nfast server", "description": "Choose a location from 50+ fast servers and connect with one tap.", "image": "/images/vpn/photos/airport-work.webp" },
+      { "year": "STEP 03", "title": "Browse with\nmore privacy", "description": "Your IP is masked and your internet traffic is protected with encryption.", "image": "/images/vpn/photos/city-phone.webp" },
+      { "year": "STAY PROTECTED", "title": "Carry privacy\nwith you", "description": "Use Traverse VPN across your devices at home, at work, and on the go.", "image": "/images/vpn/photos/cafe-collaboration.webp" }
+    ]
+  },
+  "features": {
+    "intro": "A closer look at how Traverse helps protect your connection, mask your IP, and browse with more privacy.",
+    "heading": "How Traverse Protects You",
+    "privacyHeading": "Privacy made practical",
+    "privacyCopy": "Encrypt your traffic, mask your IP address, and connect with greater confidence on networks you don’t control.",
+    "benefits": ["AES-256 encrypted connection", "Protection for public Wi-Fi", "Fast servers around the world"],
+    "usersMetric": "1M+", "usersLabel": "Users worldwide", "serversMetric": "Fast Servers", "serversLabel": "50+ locations", "encryptionMetric": "AES-256", "encryptionLabel": "Encryption",
+    "cards": [
+      { "title": "Encryption for every connection.", "copy": "AES-256 encryption helps protect your internet traffic as it travels between your device and the VPN server.", "image": "/images/vpn/photos/cafe-laptop.webp", "alt": "Person browsing on a laptop in a café" },
+      { "title": "Global Access", "copy": "Fast server locations for your connection", "image": "/images/vpn/photos/city-phone.webp", "alt": "Traveler using a phone while out in the city" },
+      { "title": "Easy to Connect", "copy": "Choose a server. Tap connect. Browse with more privacy.", "image": "/images/vpn/photos/airport-work.webp", "alt": "Traveler using a laptop while waiting at an airport" }
+    ]
+  },
+  "testimonials": {
+    "headingLine1": "Privacy in", "headingLine2": "their words.",
+    "items": [
+      { "quote": "Add protection when you connect at cafés, airports, and hotels.", "accent": "rose" },
+      { "quote": "Switch server locations while travelling and browse with added peace of mind.", "accent": "ink" },
+      { "quote": "Mask your IP and add encryption to everyday internet connections.", "accent": "silver" }
+    ]
+  },
+  "pricing": {
+    "heading": "Packages",
+    "plans": [
+      { "name": "Weekly", "audience": "Quick protection for a short trip", "monthly": "1.49", "annual": "1.49", "interval": "week", "features": ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"] },
+      { "name": "Monthly", "audience": "Flexible month-to-month privacy", "monthly": "3.99", "annual": "1.99", "interval": "month", "features": ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"] },
+      { "name": "Yearly", "audience": "Best value for year-round security", "monthly": "3.99", "annual": "1.99", "interval": "month", "features": ["AES-256 encryption", "IP masking", "DNS leak protection", "No WebRTC leaks", "Public Wi-Fi protection", "Kill Switch", "Unlimited bandwidth"] }
+    ]
+  },
+  "faq": {
+    "headingLine1": "Good to", "headingLine2": "know.", "intro": "Quick answers about VPN privacy, connections, devices, and Traverse plans.",
+    "items": [
+      { "question": "What does a VPN do?", "answer": "A VPN creates an encrypted connection between your device and a VPN server. It can help protect your traffic on shared networks and mask your IP address from the sites you visit." },
+      { "question": "Can I use Traverse on public Wi-Fi?", "answer": "Yes. A VPN can add encryption when you connect through shared Wi-Fi in places such as cafés, hotels, and airports. Keep your device and apps updated as well." },
+      { "question": "Which devices can I use?", "answer": "Traverse VPN supports the devices and platforms listed on its official website and app listings. Check those listings for current compatibility and setup instructions." },
+      { "question": "Does Traverse VPN keep activity logs?", "answer": "Traverse describes its service as no-logs. Review the current privacy policy for details about what data is collected to operate the service." },
+      { "question": "How much does Traverse VPN cost?", "answer": "Plans include weekly, monthly, and annual options. The current listed prices are $1.49 per week, $3.99 per month, or $1.99 per month with annual billing; confirm the price in the official checkout before subscribing." }
+    ]
+  },
+  "footer": {
+    "eyebrow": "PROTECTION FOR EVERY CONNECTION",
+    "headlineLine1": "Connect Securely.", "headlineLine2": "Browse Freely.",
+    "primaryCta": { "label": "Explore features", "href": "#services" },
+    "secondaryCta": { "label": "Get Traverse VPN", "href": "https://links.traversevpn.com/s/Ugp0lRJV" }
+  }
+}

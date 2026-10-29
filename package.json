@@ -3,16 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "if [ -n \"$NEXT_PUBLIC_TINA_CLIENT_ID\" ] && [ -n \"$TINA_TOKEN\" ]; then tinacms build --skip-cloud-checks; else echo 'TinaCloud credentials not set; building the public site without the hosted editor.'; fi && next build",
     "start": "next start"
   },
   "dependencies": {
+    "@tinacms/cli": "^4.0.4",
     "gsap": "^3.15.0",
     "lenis": "^1.3.27",
     "next": "^15.5.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "tinacms": "^3.15.0"
   },
   "devDependencies": {
     "@types/node": "^22.18.6",

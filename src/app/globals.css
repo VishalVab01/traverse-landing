@@ -110,7 +110,7 @@ body.hero-in-view .bottom-glass-bar{opacity:0}
 .hero-reference .hero-bg{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 49%}
 .hero-reference .hero-shade{position:absolute;z-index:-1;inset:0;width:100%;height:100%;background:rgba(21,24,28,.39)}
 
-.ref-copy{position:absolute;top:50%;left:50%;width:min(850px,92%);transform:translate(-50%,-47%);text-align:center}
+.ref-copy{position:absolute;z-index:2;top:50%;left:50%;width:min(850px,92%);transform:translate(-50%,-47%);text-align:center}
 .hero-reference h1{margin:0;color:#fff;font:800 clamp(54px,7.7vw,94px)/.9 Inter,Arial,sans-serif;letter-spacing:-.083em;text-shadow:0 1px 18px rgba(0,0,0,.08);text-wrap:balance}
 .hero-reference h1 mark{display:inline-block;background:var(--vpn-lime);color:#111;padding:0 .09em .035em;border-radius:2px;text-shadow:none}
 .ref-copy>p{max-width:605px;margin:26px auto 30px;color:rgba(255,255,255,.91);font:400 17px/1.55 var(--type);letter-spacing:-.012em;text-shadow:0 1px 12px rgba(0,0,0,.18)}
@@ -157,8 +157,8 @@ body.hero-in-view .bottom-glass-bar{opacity:0}
 .hero-reference{background:#171717}
 .hero-reference .hero-bg,.hero-reference .hero-shade{display:none}
 @media(min-width:901px){.site-header:not(.scrolled) .desktop-nav{transform:none;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.24);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);box-shadow:0 8px 28px rgba(0,0,0,.12)}}
-.hero-globe{position:absolute;z-index:0;left:50%;bottom:-220px;transform:translateX(-50%);width:min(680px,80vw);height:560px;overflow:hidden;opacity:1;pointer-events:none}
-.hero-globe>div{width:100%;height:100%;min-width:0;min-height:0;background:transparent!important}
+.hero-globe{position:absolute;z-index:0;left:50%;bottom:-220px;transform:translateX(-50%);width:min(680px,80vw);height:560px;overflow:hidden;opacity:1;pointer-events:none;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.hero-globe>div,.hero-globe canvas{width:100%;height:100%;min-width:0;min-height:0;background:transparent!important;background-color:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
 
 @media(max-width:900px){.hero-globe{left:calc(50% - 6px);width:min(680px,100vw);height:460px;bottom:-110px}}
 .about-reveal-word{display:inline-block;will-change:opacity,filter,transform}
@@ -188,7 +188,9 @@ body.hero-in-view .bottom-glass-bar{opacity:0}
 /* Mobile navigation stays attached to the viewport, including the compact scrolled header. */
 .mobile-nav[hidden]{display:none}
 @media(max-width:900px){
- .mobile-nav{position:fixed;top:74px;left:12px;right:12px;width:auto;max-height:calc(100dvh - 88px);overflow-y:auto;overscroll-behavior:contain;border-radius:16px;padding:10px 20px 16px;z-index:40}
+ .mobile-nav{position:fixed;top:74px;left:12px;right:12px;width:auto;max-height:calc(100dvh - 88px);overflow-y:auto;overscroll-behavior:contain;border-radius:16px;padding:10px 20px 16px;z-index:40;color:#111;background:#fff}
+ .mobile-nav a,.mobile-download summary{color:#111}
+ .mobile-nav a[aria-current="page"]{color:#e91f4f}
  .site-header:not(.scrolled) .mobile-nav{top:74px;left:12px;right:12px;width:auto}
  .site-header.scrolled .mobile-nav{top:48px;left:auto;right:12px;width:min(340px,calc(100vw - 24px));max-height:calc(100dvh - 60px)}
  .mobile-nav a,.mobile-download summary{min-height:52px;padding-block:13px}

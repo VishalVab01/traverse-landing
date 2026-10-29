@@ -3,6 +3,7 @@ import SiteHeader from "../site-header";
 import BlogFeed from "./blog-feed";
 import BlogMotion from "./blog-motion";
 import { client } from "../../../tina/__generated__/client";
+import { resolveTinaImageUrls } from "../tina-image-url";
 import fallback from "../../../content/blog/blog.json";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +17,7 @@ export default async function BlogPage() {
   let content: typeof fallback = fallback;
   if (process.env.NODE_ENV === "development" || (process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
     const result = await client.queries.blogPage({ relativePath: "blog.json" }, { fetchOptions: { cache: "no-store" } });
-    content = result.data.blogPage as typeof fallback;
+    content = resolveTinaImageUrls(result.data.blogPage) as typeof fallback;
   }
   return <main className="blog-page">
     <SiteHeader />

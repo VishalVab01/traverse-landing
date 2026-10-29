@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SiteHeader from "../site-header";
 import FeaturesContent from "./features-content";
 import { client } from "../../../tina/__generated__/client";
+import { resolveTinaImageUrls } from "../tina-image-url";
 import fallback from "../../../content/features/features.json";
 
 export const dynamic = "force-dynamic";
@@ -18,6 +19,6 @@ export default async function FeaturesPage() {
   const result = await client.queries.featuresPage({ relativePath: "features.json" }, { fetchOptions: { cache: "no-store" } });
   return <main className="product-features">
     <SiteHeader />
-    <FeaturesContent content={result.data.featuresPage as typeof fallback} />
+    <FeaturesContent content={resolveTinaImageUrls(result.data.featuresPage) as typeof fallback} />
   </main>;
 }

@@ -3,6 +3,7 @@ import SiteHeader from "../../site-header";
 import PlatformDownloadContent from "../platform-download-content";
 import { platformKeys, platformPages, type PlatformKey } from "../platform-data";
 import { client } from "../../../../tina/__generated__/client";
+import { resolveTinaImageUrls } from "../../tina-image-url";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,7 @@ export default async function PlatformPage({ params }: { params: Promise<{ platf
   if (!data) return <main className="platform-download-page"><SiteHeader/><PlatformDownloadContent platform={null}/></main>;
   if (process.env.NODE_ENV === "development" || (process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
     const result = await client.queries.platformPage({ relativePath: `${key}.json` }, { fetchOptions: { cache: "no-store" } });
-    data = result.data.platformPage as typeof data;
+    data = resolveTinaImageUrls(result.data.platformPage) as typeof data;
   }
   return <main className="platform-download-page"><SiteHeader/><PlatformDownloadContent platform={data}/></main>;
 }

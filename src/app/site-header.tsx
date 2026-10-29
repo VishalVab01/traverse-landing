@@ -39,6 +39,20 @@ export default function SiteHeader() {
     return () => window.removeEventListener("scroll", update);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+    setDownloadOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
   return <header className={`site-header${scrolled ? " scrolled" : ""}`}>
     <div className="brand-group"><a className="brand" href={`${homeHref}#home`} aria-label="Traverse VPN home"><span className="vpn-brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5 20 6v5.4c0 5-3.2 8.4-8 10.1-4.8-1.7-8-5.1-8-10.1V6z"/><path d="m9 12 2 2 4-4"/></svg></span><span>Traverse</span></a></div>
     <nav className="desktop-nav" aria-label="Main navigation">
@@ -55,8 +69,8 @@ export default function SiteHeader() {
       <a href="/faqs" aria-current={pathname === "/faqs" ? "page" : undefined}>FAQs</a>
     </nav>
     <a className="header-cta" href="https://links.traversevpn.com/s/Ugp0lRJV">Get protected <span aria-hidden="true">↗</span></a>
-    <button className="menu-button" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} onClick={() => setOpen(!open)}><i/><i/></button>
-    {open && <nav className="mobile-nav" aria-label="Navigation">
+    <button className="menu-button" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}><i/><i/></button>
+    <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" hidden={!open}>
       <a onClick={() => setOpen(false)} href="/features" aria-current={pathname === "/features" ? "page" : undefined}>Features</a>
       <a onClick={() => setOpen(false)} href="/plans" aria-current={pathname === "/plans" ? "page" : undefined}>Plans</a>
       <a onClick={() => setOpen(false)} href="/enterprise" aria-current={pathname === "/enterprise" ? "page" : undefined}>Enterprise</a>
@@ -66,6 +80,6 @@ export default function SiteHeader() {
         <div>{downloadGroups.flatMap((group) => group.items).map((item) => <a onClick={() => setOpen(false)} href={item.href} key={item.label}>{item.label}</a>)}</div>
       </details>
       <a onClick={() => setOpen(false)} href="/faqs" aria-current={pathname === "/faqs" ? "page" : undefined}>FAQs</a>
-    </nav>}
+    </nav>
   </header>;
 }

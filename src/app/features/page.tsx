@@ -16,9 +16,15 @@ export default async function FeaturesPage() {
   if (process.env.NODE_ENV !== "development" && !(process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
     return <main className="product-features"><SiteHeader /><FeaturesContent content={fallback} /></main>;
   }
-  const result = await client.queries.featuresPage({ relativePath: "features.json" }, { fetchOptions: { cache: "no-store" } });
+  let content = fallback;
+  try {
+    const result = await client.queries.featuresPage({ relativePath: "features.json" }, { fetchOptions: { cache: "no-store" } });
+    content = resolveTinaImageUrls(result.data.featuresPage) as typeof fallback;
+  } catch {
+    // Keep the local page available if Tina Cloud has no indexed record yet.
+  }
   return <main className="product-features">
     <SiteHeader />
-    <FeaturesContent content={resolveTinaImageUrls(result.data.featuresPage) as typeof fallback} />
+    <FeaturesContent content={content} />
   </main>;
 }

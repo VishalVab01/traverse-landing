@@ -12,10 +12,13 @@ export default async function HomePage() {
     return <StaticHomeContent content={homepage} />;
   }
 
-  const result = await client.queries.homepage(
-    { relativePath: "home.json" },
-    { fetchOptions: { cache: "no-store" } },
-  );
-
-  return <HomeContent {...result} />;
+  try {
+    const result = await client.queries.homepage(
+      { relativePath: "home.json" },
+      { fetchOptions: { cache: "no-store" } },
+    );
+    return <HomeContent {...result} />;
+  } catch {
+    return <StaticHomeContent content={homepage} />;
+  }
 }

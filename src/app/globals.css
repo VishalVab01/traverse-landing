@@ -185,6 +185,15 @@ body.hero-in-view .bottom-glass-bar{opacity:0}
 .mobile-download summary span{transition:transform .2s ease}
 .mobile-download>div{display:grid;grid-template-columns:1fr 1fr;padding:0 0 9px 12px}
 .mobile-download>div a{padding:11px 4px;border:0;font:500 15px var(--type)}
+/* Mobile navigation stays attached to the viewport, including the compact scrolled header. */
+.mobile-nav[hidden]{display:none}
+@media(max-width:900px){
+ .mobile-nav{position:fixed;top:74px;left:12px;right:12px;width:auto;max-height:calc(100dvh - 88px);overflow-y:auto;overscroll-behavior:contain;border-radius:16px;padding:10px 20px 16px;z-index:40}
+ .site-header:not(.scrolled) .mobile-nav{top:74px;left:12px;right:12px;width:auto}
+ .site-header.scrolled .mobile-nav{top:48px;left:auto;right:12px;width:min(340px,calc(100vw - 24px));max-height:calc(100dvh - 60px)}
+ .mobile-nav a,.mobile-download summary{min-height:52px;padding-block:13px}
+ .mobile-nav a:focus-visible,.mobile-download summary:focus-visible{outline:2px solid var(--pink);outline-offset:2px;border-radius:6px}
+}
 
 /* Traverse journal page */
 .blog-page{--blog-ink:#101112;min-height:100vh;background:#f2f2f1;color:var(--blog-ink);overflow:hidden}

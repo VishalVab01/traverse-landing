@@ -12,6 +12,12 @@ export default async function EnterprisePage() {
   if (process.env.NODE_ENV !== "development" && !(process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
     return <main className="product-enterprise"><SiteHeader /><EnterpriseContent content={fallback} /></main>;
   }
-  const result = await client.queries.enterprisePage({ relativePath: "enterprise.json" }, { fetchOptions: { cache: "no-store" } });
-  return <main className="product-enterprise"><SiteHeader /><EnterpriseContent content={result.data.enterprisePage as typeof fallback} /></main>;
+  let content = fallback;
+  try {
+    const result = await client.queries.enterprisePage({ relativePath: "enterprise.json" }, { fetchOptions: { cache: "no-store" } });
+    content = result.data.enterprisePage as typeof fallback;
+  } catch {
+    // Keep the bundled copy available when Tina Cloud content is unavailable.
+  }
+  return <main className="product-enterprise"><SiteHeader /><EnterpriseContent content={content} /></main>;
 }

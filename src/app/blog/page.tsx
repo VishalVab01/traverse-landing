@@ -16,8 +16,12 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   let content: typeof fallback = fallback;
   if (process.env.NODE_ENV === "development" || (process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
-    const result = await client.queries.blogPage({ relativePath: "blog.json" }, { fetchOptions: { cache: "no-store" } });
-    content = resolveTinaImageUrls(result.data.blogPage) as typeof fallback;
+    try {
+      const result = await client.queries.blogPage({ relativePath: "blog.json" }, { fetchOptions: { cache: "no-store" } });
+      content = resolveTinaImageUrls(result.data.blogPage) as typeof fallback;
+    } catch {
+      // The bundled feed keeps the page usable until Tina Cloud content is available.
+    }
   }
   return <main className="blog-page">
     <SiteHeader />

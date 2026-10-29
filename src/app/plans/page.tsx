@@ -15,6 +15,12 @@ export default async function PlansPage() {
   if (process.env.NODE_ENV !== "development" && !(process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
     return <main className="product-plans"><SiteHeader /><PlansContent content={fallback} /></main>;
   }
-  const result = await client.queries.plansPage({ relativePath: "plans.json" }, { fetchOptions: { cache: "no-store" } });
-  return <main className="product-plans"><SiteHeader /><PlansContent content={result.data.plansPage as typeof fallback} /></main>;
+  let content = fallback;
+  try {
+    const result = await client.queries.plansPage({ relativePath: "plans.json" }, { fetchOptions: { cache: "no-store" } });
+    content = result.data.plansPage as typeof fallback;
+  } catch {
+    // Keep the bundled copy available when Tina Cloud content is unavailable.
+  }
+  return <main className="product-plans"><SiteHeader /><PlansContent content={content} /></main>;
 }

@@ -24,8 +24,12 @@ export default async function PlatformPage({ params }: { params: Promise<{ platf
   let data = platformPages[key];
   if (!data) return <main className="platform-download-page"><SiteHeader/><PlatformDownloadContent platform={null}/></main>;
   if (process.env.NODE_ENV === "development" || (process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
-    const result = await client.queries.platformPage({ relativePath: `${key}.json` }, { fetchOptions: { cache: "no-store" } });
-    data = resolveTinaImageUrls(result.data.platformPage) as typeof data;
+    try {
+      const result = await client.queries.platformPage({ relativePath: `${key}.json` }, { fetchOptions: { cache: "no-store" } });
+      data = resolveTinaImageUrls(result.data.platformPage) as typeof data;
+    } catch {
+      // Keep the platform page available from bundled content when Tina Cloud is unavailable.
+    }
   }
   return <main className="platform-download-page"><SiteHeader/><PlatformDownloadContent platform={data}/></main>;
 }

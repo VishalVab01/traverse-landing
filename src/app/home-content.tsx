@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useTina } from "tinacms/dist/react";
+import { resolveTinaImageUrls } from "./tina-image-url";
 import type { HomepageQuery, HomepageQueryVariables } from "../../tina/__generated__/types";
 import defaultHomepage from "../../content/pages/home.json";
 import Lenis from "lenis";
@@ -380,7 +381,7 @@ function HomePage({ content }: { content: HomePageContent }) {
 
 export default function HomeContent(props: { query: string; variables: HomepageQueryVariables; data: HomepageQuery }) {
   const { data } = useTina<HomepageQuery>(props);
-  return <HomePage content={data.homepage as HomePageContent} />;
+  return <HomePage content={resolveTinaImageUrls(data.homepage) as HomePageContent} />;
 }
 
 export function StaticHomeContent({ content }: { content: HomePageContent }) {

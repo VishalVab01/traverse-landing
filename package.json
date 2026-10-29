@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "if [ -n \"$NEXT_PUBLIC_TINA_CLIENT_ID\" ] && [ -n \"$TINA_TOKEN\" ]; then tinacms build --skip-cloud-checks; else echo 'TinaCloud credentials not set; building the public site without the hosted editor.'; fi && next build",
+    "build": "node scripts/build.mjs",
     "start": "next start"
   },
   "dependencies": {

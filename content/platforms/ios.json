@@ -1,0 +1,63 @@
+{
+  "key": "ios",
+  "name": "iOS",
+  "family": "Mobile",
+  "title": "A more private connection for iPhone.",
+  "lead": "Take Traverse VPN with you for everyday browsing, travel, and the Wi-Fi networks you do not know.",
+  "description": "A VPN for iPhone routes your internet traffic through an encrypted connection and masks your usual IP while connected. Traverse's iOS page focuses on quick setup, privacy on the go, and an experience designed for the Apple ecosystem.",
+  "image": "/images/vpn/photos/cafe-phone.webp",
+  "imageAlt": "Phone in hand in a public indoor space",
+  "highlights": [
+    {
+      "title": "Connect with one tap",
+      "text": "Sign in, pick a server, and turn on your VPN connection from the app."
+    },
+    {
+      "title": "Safer on the go",
+      "text": "Use encryption when connecting through public Wi-Fi while travelling or working away from home."
+    },
+    {
+      "title": "Designed for iPhone",
+      "text": "The original page highlights an iPhone and iPad experience within the Apple ecosystem."
+    }
+  ],
+  "steps": [
+    {
+      "title": "Choose a plan",
+      "text": "Select a subscription that fits the way you use Traverse VPN."
+    },
+    {
+      "title": "Install from the App Store",
+      "text": "Get the official Traverse VPN app for iPhone or iPad."
+    },
+    {
+      "title": "Connect securely",
+      "text": "Open the app, sign in, and connect to your preferred server."
+    }
+  ],
+  "detailsTitle": "Everyday privacy for your Apple devices",
+  "details": [
+    {
+      "title": "Encrypt your connection",
+      "text": "Add a layer of protection to internet traffic on public and shared networks."
+    },
+    {
+      "title": "Mask your IP",
+      "text": "While the VPN is connected, services see the VPN server's IP instead of your usual network address."
+    },
+    {
+      "title": "More control",
+      "text": "Traverse's page describes split tunneling and always-on connection safeguards among its available tools."
+    },
+    {
+      "title": "Other Apple devices",
+      "text": "Traverse lists iPhone and iPad support. Check the current App Store listing for OS compatibility."
+    }
+  ],
+  "compatibility": [
+    "iPhone",
+    "iPad",
+    "Current iOS and iPadOS versions listed in the App Store"
+  ],
+  "note": "Available features and compatibility may depend on your app version, plan, and device."
+}

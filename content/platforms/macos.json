@@ -1,0 +1,63 @@
+{
+  "key": "macos",
+  "name": "macOS",
+  "family": "Desktop",
+  "title": "Private browsing, at home or on the move.",
+  "lead": "Bring Traverse VPN to your Mac for an encrypted connection, simple server choices, and a familiar one-tap setup.",
+  "description": "A VPN for Mac encrypts the connection between your Mac and a VPN server. It can help keep traffic more private on café, hotel, and airport Wi-Fi while masking your regular network IP from the websites you visit.",
+  "image": "/images/vpn/photos/travel-desk.webp",
+  "imageAlt": "Mac style laptop on a travel desk",
+  "highlights": [
+    {
+      "title": "A simple setup",
+      "text": "Install the macOS app, sign in, and connect without manually building a VPN profile."
+    },
+    {
+      "title": "Safer shared networks",
+      "text": "Add an encrypted layer when using Wi-Fi away from home or the office."
+    },
+    {
+      "title": "Protection that fits",
+      "text": "Use server selection and available connection settings to suit your everyday workflow."
+    }
+  ],
+  "steps": [
+    {
+      "title": "Pick a plan",
+      "text": "Choose a weekly, monthly, or yearly Traverse VPN plan."
+    },
+    {
+      "title": "Get the Mac app",
+      "text": "Install the current macOS version from the official download listing."
+    },
+    {
+      "title": "Secure your connection",
+      "text": "Sign in, choose a server, and connect before you browse."
+    }
+  ],
+  "detailsTitle": "A familiar VPN experience on Mac",
+  "details": [
+    {
+      "title": "Encrypted traffic",
+      "text": "Protect your connection with modern VPN encryption on the networks you use."
+    },
+    {
+      "title": "One tap to connect",
+      "text": "Connect to a server from the app instead of managing low-level network settings."
+    },
+    {
+      "title": "Tools for more control",
+      "text": "Depending on your version, settings can include kill switch, auto-connect, and split tunneling."
+    },
+    {
+      "title": "Apple device support",
+      "text": "Traverse's original Mac page lists macOS 12 Monterey and later. Confirm current requirements in the app listing."
+    }
+  ],
+  "compatibility": [
+    "macOS 12 Monterey and later (per original page)",
+    "MacBook Air and MacBook Pro",
+    "iMac, Mac mini, Mac Studio and Mac Pro"
+  ],
+  "note": "Available features and compatibility may depend on your app version, plan, and device."
+}

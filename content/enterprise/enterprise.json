@@ -1,0 +1,102 @@
+{
+  "audiences": [
+    {
+      "title": "IT Directors and Infrastructure Managers",
+      "text": "Responsible for deploying and maintaining secure access across teams and locations. Centralized provisioning reduces per-device overhead and simplifies lifecycle management."
+    },
+    {
+      "title": "CISOs and Security Architects",
+      "text": "Responsible for organizational access policies and security posture alignment. Role-based access control and encrypted routing support enforceable access boundaries."
+    },
+    {
+      "title": "CTOs and Technical Decision Makers",
+      "text": "Responsible for infrastructure investment decisions and long-term architecture alignment. Traverse VPN integrates into existing environments without requiring structural redesign."
+    },
+    {
+      "title": "Procurement and Compliance Stakeholders",
+      "text": "Responsible for validating vendor alignment with governance requirements. Enterprise deployment provides documented access controls and structured implementation planning."
+    }
+  ],
+  "expectations": [
+    {
+      "title": "Centralized Provisioning and Access Management",
+      "text": "Administrators create users, assign permissions, and revoke access from a single interface instead of configuring individual endpoints."
+    },
+    {
+      "title": "Role-Based Access Control",
+      "text": "Users access only the systems required for their role. This supports security segmentation and regulatory alignment."
+    },
+    {
+      "title": "Multi-Site Connectivity",
+      "text": "Physical locations operate as a connected infrastructure layer rather than isolated networks requiring individual routing configuration."
+    },
+    {
+      "title": "Stable Performance Under Concurrent Load",
+      "text": "Enterprise VPN must support distributed access across device types and geographies without degrading application responsiveness."
+    },
+    {
+      "title": "Custom Deployment Planning",
+      "text": "Enterprise environments vary widely across cloud models, hybrid infrastructure structures, and regulatory conditions. Traverse VPN supports deployment planning aligned to organization-specific infrastructure requirements rather than requiring adaptation to rigid templates."
+    },
+    {
+      "title": "Scalable Corporate VPN Deployment",
+      "text": "Enterprise scalability includes the ability to add users, offices, and infrastructure environments without redesigning access architecture. New users are provisioned centrally. Locations integrate through persistent routing structure. Environments extend through existing deployment configuration."
+    },
+    {
+      "title": "High-Performance Infrastructure",
+      "text": "Enterprise VPN infrastructure must sustain stable performance under concurrency. Traverse VPN routing architecture supports distributed teams accessing business-critical applications without introducing workflow disruption that encourages bypass behavior."
+    }
+  ],
+  "support": [
+    {
+      "title": "Technical Onboarding Support",
+      "text": "Technical assistance is available during the initial deployment to help the VPN integrate with existing infrastructure. This covers configuration, integration, and validation before the organization moves to full operational use."
+    },
+    {
+      "title": "Technical Consultation",
+      "text": "Before deployment begins, organizations can schedule a technical consultation to discuss infrastructure requirements, deployment scenarios, and configurations that suit their environment."
+    },
+    {
+      "title": "Enterprise Pricing Consultation",
+      "text": "Custom pricing is developed around organizational requirements. The consultation covers seat requirements, deployment scope, and custom configuration needs."
+    },
+    {
+      "title": "Deployment Support",
+      "text": "Support is available throughout rollout to address integration challenges, resolve configuration issues, and help ensure deployment meets operational requirements."
+    }
+  ],
+  "questions": [
+    {
+      "question": "Who should choose the enterprise plan?",
+      "answer": "Organizations needing centralized provisioning, role-based permissions, or multi-location connectivity may benefit from enterprise deployment architecture."
+    },
+    {
+      "question": "What does centralized management include?",
+      "answer": "It brings user provisioning and access management into a single administrator workflow, rather than requiring configuration on each endpoint."
+    },
+    {
+      "question": "Can Traverse VPN connect multiple office locations?",
+      "answer": "Multi-site connectivity can be discussed during a technical consultation, based on your infrastructure and deployment requirements."
+    },
+    {
+      "question": "How is contractor access handled?",
+      "answer": "Access policies can be planned around roles and permissions, so people receive access aligned with their responsibilities."
+    },
+    {
+      "question": "Can Traverse VPN support migration from an existing VPN?",
+      "answer": "A consultation can review your current setup and determine a deployment plan that fits your environment."
+    },
+    {
+      "question": "What support level do enterprise customers receive?",
+      "answer": "Support options include technical onboarding, technical consultation, custom pricing consultation, and help throughout deployment."
+    },
+    {
+      "question": "Is annual billing required?",
+      "answer": "Enterprise pricing is tailored to seat requirements, deployment scope, and configuration needs. Discuss billing during your sales consultation."
+    },
+    {
+      "question": "How does Traverse VPN support compliance workflows?",
+      "answer": "Role-based access control and documented access planning can support governance workflows. Requirements vary, so review them with your security and compliance teams."
+    }
+  ]
+}

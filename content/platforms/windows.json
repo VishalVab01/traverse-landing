@@ -1,0 +1,63 @@
+{
+  "key": "windows",
+  "name": "Windows",
+  "family": "Desktop",
+  "title": "A more private connection for Windows.",
+  "lead": "Get the Traverse VPN experience on your Windows PC or laptop, with encrypted connections and straightforward controls for everyday browsing.",
+  "description": "A VPN for Windows routes your internet traffic through an encrypted connection and replaces your usual network IP with the VPN server's IP while you are connected. That adds privacy on shared networks and gives you a simple way to choose a virtual location.",
+  "image": "/images/vpn/photos/airport-work.webp",
+  "imageAlt": "Laptop ready for a secure connection while travelling",
+  "highlights": [
+    {
+      "title": "Connect in a click",
+      "text": "Open the app and connect to a server without configuring a VPN connection from scratch."
+    },
+    {
+      "title": "Choose your route",
+      "text": "Select a server location for the connection you need, then switch when your plans change."
+    },
+    {
+      "title": "More control",
+      "text": "Use available options like auto-connect, kill switch, and split tunneling to tailor protection."
+    }
+  ],
+  "steps": [
+    {
+      "title": "Choose a plan",
+      "text": "Pick the subscription that fits how you use Traverse VPN."
+    },
+    {
+      "title": "Install the app",
+      "text": "Download Traverse VPN for Windows and sign in to your account."
+    },
+    {
+      "title": "Connect",
+      "text": "Choose a server or use quick connect, then browse through the VPN connection."
+    }
+  ],
+  "detailsTitle": "Made for the way you use your PC",
+  "details": [
+    {
+      "title": "Everyday privacy",
+      "text": "Encryption helps protect traffic when you browse on public or shared Wi-Fi."
+    },
+    {
+      "title": "Flexible routing",
+      "text": "Split tunneling can let selected apps use the VPN while others keep a direct connection."
+    },
+    {
+      "title": "Connection safeguards",
+      "text": "Options such as DNS leak protection and kill switch help reduce exposure if a connection changes."
+    },
+    {
+      "title": "Windows compatibility",
+      "text": "The original product page lists Windows 10 and Windows 11 support, including ARM devices. Check the current installer details for exact requirements."
+    }
+  ],
+  "compatibility": [
+    "Windows 10",
+    "Windows 11",
+    "Windows ARM support listed by Traverse"
+  ],
+  "note": "Available features and compatibility may depend on your app version, plan, and device."
+}

@@ -14,7 +14,7 @@ type CoreFeature = {
   visual: "servers" | "kill-switch" | "devices" | "wifi" | "split";
 };
 
-const coreFeatures: CoreFeature[] = [
+const defaultCoreFeatures: CoreFeature[] = [
   { index: "01", title: "Worldwide servers", description: "Choose a fast route through Traverse’s global network.", detail: "10 HIGH-SPEED SERVERS", visual: "servers" },
   { index: "02", title: "Automatic Kill Switch", description: "Stops traffic if the VPN drops.", detail: "LEAK SAFEGUARD", visual: "kill-switch" },
   { index: "03", title: "Multiple devices", description: "Protect multiple devices with one account.", detail: "MULTI-DEVICE", visual: "devices" },
@@ -112,7 +112,7 @@ function FeatureCard({ feature }: { feature: CoreFeature }) {
   </article>;
 }
 
-export function FeatureSection() {
+export function FeatureSection({ features = defaultCoreFeatures }: { features?: CoreFeature[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const section = sectionRef.current;
@@ -145,7 +145,7 @@ export function FeatureSection() {
         <p className="core-intro-copy">Everything you need for complete online freedom.</p>
         <span className="core-intro-index">PROTECTION / 01—05</span>
       </header>
-      <div className="core-bento">{coreFeatures.map((feature) => <FeatureCard key={feature.index} feature={feature}/>)}</div>
+      <div className="core-bento">{features.map((feature) => <FeatureCard key={feature.index} feature={feature}/>)}</div>
     </div>
   </section>;
 }

@@ -1,0 +1,63 @@
+{
+  "key": "android",
+  "name": "Android",
+  "family": "Mobile",
+  "title": "Your privacy, ready for the everyday.",
+  "lead": "Protect the connection on the phone that goes everywhere with you, from everyday browsing to public Wi-Fi.",
+  "description": "The Traverse Android app brings VPN protection to your mobile connection. Connect through an encrypted tunnel, mask your regular IP, and use available privacy features from one app.",
+  "image": "/images/vpn/photos/city-phone.webp",
+  "imageAlt": "Phone user on a city street after dark",
+  "highlights": [
+    {
+      "title": "One-tap connection",
+      "text": "Open the app, choose a server, and connect before using a shared or unfamiliar network."
+    },
+    {
+      "title": "Mobile-friendly safeguards",
+      "text": "Options such as kill switch and auto-connect can help keep protection aligned with your routine."
+    },
+    {
+      "title": "Choose app routing",
+      "text": "Split tunneling can let you choose which apps use the VPN connection."
+    }
+  ],
+  "steps": [
+    {
+      "title": "Choose a plan",
+      "text": "Pick the plan that works for your needs."
+    },
+    {
+      "title": "Install Traverse VPN",
+      "text": "Find the official Traverse VPN app for Android and sign in."
+    },
+    {
+      "title": "Connect and browse",
+      "text": "Choose a server or connect quickly, then use the internet with your VPN active."
+    }
+  ],
+  "detailsTitle": "Designed to travel with your phone",
+  "details": [
+    {
+      "title": "Public Wi-Fi protection",
+      "text": "Add an encrypted layer when you join Wi-Fi in cafés, hotels, or airports."
+    },
+    {
+      "title": "App-based routing",
+      "text": "Choose which apps go through the VPN with split tunneling, when available."
+    },
+    {
+      "title": "Stay connected",
+      "text": "Traverse lists auto-connect and kill switch among the Android features on its product page."
+    },
+    {
+      "title": "Use across devices",
+      "text": "Your account can be used on other supported devices too; check the current plan for device limits."
+    }
+  ],
+  "compatibility": [
+    "Android app",
+    "Public Wi-Fi and mobile data",
+    "Other supported devices under one account"
+  ],
+  "note": "Android features and supported versions may vary by device and app release. Check the current store listing."
+}

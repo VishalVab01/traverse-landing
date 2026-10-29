@@ -1,0 +1,64 @@
+{
+  "key": "linux",
+  "name": "Linux",
+  "family": "Desktop",
+  "title": "A straightforward VPN for Linux.",
+  "lead": "Traverse's Linux page highlights graphical and command-line options for users who want privacy without a complicated setup.",
+  "description": "Connect your Linux computer through an encrypted VPN tunnel, choose a server location, and keep the same everyday privacy tools close at hand. The original product page describes support for popular distributions and both GUI and CLI workflows.",
+  "image": "/images/vpn/photos/cafe-laptop.webp",
+  "imageAlt": "Laptop open and ready for work in a café",
+  "highlights": [
+    {
+      "title": "GUI and CLI options",
+      "text": "Choose the workflow that fits your setup, whether you prefer a graphical app or terminal controls."
+    },
+    {
+      "title": "Common distributions",
+      "text": "The original Linux page names Ubuntu, Debian, Fedora, Linux Mint, and Arch among its supported options."
+    },
+    {
+      "title": "Open standards",
+      "text": "Traverse describes support for established VPN protocols such as WireGuard and OpenVPN."
+    }
+  ],
+  "steps": [
+    {
+      "title": "Choose your plan",
+      "text": "Select the Traverse VPN subscription you want to use."
+    },
+    {
+      "title": "Install for your distro",
+      "text": "Follow the current Linux download instructions for your distribution and architecture."
+    },
+    {
+      "title": "Connect your way",
+      "text": "Use the app or the documented command-line workflow to connect to a server."
+    }
+  ],
+  "detailsTitle": "Privacy with room for your workflow",
+  "details": [
+    {
+      "title": "Encrypted connection",
+      "text": "Route traffic through the VPN to add privacy on networks you do not control."
+    },
+    {
+      "title": "Leak safeguards",
+      "text": "Traverse describes DNS and IPv6 leak safeguards on its Linux feature page."
+    },
+    {
+      "title": "Flexible controls",
+      "text": "Use available features such as kill switch and split tunneling to manage how traffic is routed."
+    },
+    {
+      "title": "Distribution support",
+      "text": "Supported distributions and package availability can change. Use Traverse's current Linux instructions before installing."
+    }
+  ],
+  "compatibility": [
+    "Ubuntu",
+    "Debian",
+    "Fedora",
+    "Linux Mint and Arch (as listed by Traverse)"
+  ],
+  "note": "Linux packages, supported versions, and available features can vary; check the official setup guide for current details."
+}

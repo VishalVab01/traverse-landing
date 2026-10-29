@@ -1,0 +1,53 @@
+{
+  "platforms": [
+    {
+      "name": "Windows",
+      "key": "windows",
+      "family": "Desktop",
+      "href": "/download/windows",
+      "note": "PC and laptop"
+    },
+    {
+      "name": "macOS",
+      "key": "macos",
+      "family": "Desktop",
+      "href": "/download/macos",
+      "note": "Mac"
+    },
+    {
+      "name": "Linux",
+      "key": "linux",
+      "family": "Desktop",
+      "href": "/download/linux",
+      "note": "GUI and CLI details"
+    },
+    {
+      "name": "Android",
+      "key": "android",
+      "family": "Mobile",
+      "href": "/download/android",
+      "note": "Phone and tablet"
+    },
+    {
+      "name": "iOS",
+      "key": "ios",
+      "family": "Mobile",
+      "href": "/download/ios",
+      "note": "iPhone and iPad"
+    }
+  ],
+  "steps": [
+    {
+      "title": "Create an account",
+      "text": "Choose a plan that fits how you use Traverse VPN."
+    },
+    {
+      "title": "Download the app",
+      "text": "Install the app for your device and sign in."
+    },
+    {
+      "title": "Connect to a server",
+      "text": "Tap connect or choose a location to start browsing."
+    }
+  ]
+}

@@ -5,18 +5,11 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { PlatformPageData } from "./platform-data";
+import fallback from "../../../content/download/download.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const allPlatforms = [
-  { name: "Windows", key: "windows", type: "Desktop", href: "/download/windows", note: "PC and laptop" },
-  { name: "macOS", key: "macos", type: "Desktop", href: "/download/macos", note: "Mac" },
-  { name: "Linux", key: "linux", type: "Desktop", href: "/download/linux", note: "GUI and CLI details" },
-  { name: "Android", key: "android", type: "Mobile", href: "/download/android", note: "Phone and tablet" },
-  { name: "iOS", key: "ios", type: "Mobile", href: "/download/ios", note: "iPhone and iPad" },
-];
-
-export default function PlatformDownloadContent({ platform }: { platform: PlatformPageData | null }) {
+export default function PlatformDownloadContent({ platform, content = fallback }: { platform: PlatformPageData | null; content?: typeof fallback }) {
   const rootRef = useRef<HTMLElement>(null);
   const isAllApps = !platform;
 
@@ -37,8 +30,8 @@ export default function PlatformDownloadContent({ platform }: { platform: Platfo
 
   if (isAllApps) return <section className="platform-page-content" ref={rootRef}>
     <header className="platform-hero platform-all-hero"><div className="platform-hero-glow" aria-hidden="true"/><div className="platform-hero-copy"><p className="blog-eyebrow"><span/> TRAVERSE VPN <i>/</i> DOWNLOAD</p><h1>One account.<br/><span>Everywhere you connect.</span></h1><p>Traverse VPN is built for everyday users who want straightforward privacy online. Pick your platform, install the app, and use the same account across your supported devices.</p><div className="platform-hero-actions"><a className="platform-primary-cta" href="https://links.traversevpn.com/s/Ugp0lRJV">Get Traverse <span aria-hidden="true">↗</span></a><a className="platform-secondary-cta" href="/plans">View plans</a></div></div><div className="platform-hero-art platform-all-art"><div className="platform-art-top"><span>TRAVERSE VPN</span><i>CONNECTED</i></div><div className="platform-art-orbit"><div className="platform-art-shield">T<span>✓</span></div><b>Protected</b><small>Choose a device to get started</small></div><div className="platform-art-bottom"><span>PRIVATE CONNECTION</span><b>● &nbsp; ACTIVE</b></div></div><div className="platform-hero-index"><span>01</span><i/> AVAILABLE ACROSS YOUR DEVICES</div></header>
-    <section className="platform-all-grid" aria-labelledby="platform-all-title"><div className="platform-section-heading platform-reveal"><p className="blog-eyebrow"><span/> FIND YOUR APP</p><h2 id="platform-all-title">Download Traverse<br/>for your device.</h2><p>Choose a platform to see the app details, setup steps, and compatibility information.</p></div><div className="platform-app-grid">{allPlatforms.map((item,index)=><a className="platform-app-card platform-reveal" href={item.href} key={item.key}><span className="platform-app-number">0{index+1} / {item.type.toUpperCase()}</span><div className={`platform-app-icon icon-${item.key}`} aria-hidden="true">{item.key === "windows" ? "⊞" : item.key === "macos" ? "●" : item.key === "linux" ? "◈" : item.key === "android" ? "●" : ""}</div><h3>{item.name}</h3><p>{item.note}</p><span className="platform-app-arrow" aria-hidden="true">↗</span></a>)}</div></section>
-    <section className="platform-how platform-all-how"><div className="platform-section-heading platform-reveal"><p className="blog-eyebrow"><span/> GET CONNECTED</p><h2>Three quick steps.<br/>A better routine.</h2></div><div className="platform-steps">{[{title:"Create an account",text:"Choose a plan that fits how you use Traverse VPN."},{title:"Download the app",text:"Install the app for your device and sign in."},{title:"Connect to a server",text:"Tap connect or choose a location to start browsing."}].map((step,index)=><article className="platform-step platform-reveal" key={step.title}><span>0{index+1}</span><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>
+    <section className="platform-all-grid" aria-labelledby="platform-all-title"><div className="platform-section-heading platform-reveal"><p className="blog-eyebrow"><span/> FIND YOUR APP</p><h2 id="platform-all-title">Download Traverse<br/>for your device.</h2><p>Choose a platform to see the app details, setup steps, and compatibility information.</p></div><div className="platform-app-grid">{content.platforms.map((item,index)=><a className="platform-app-card platform-reveal" href={item.href} key={item.key}><span className="platform-app-number">0{index+1} / {item.family.toUpperCase()}</span><div className={`platform-app-icon icon-${item.key}`} aria-hidden="true">{item.key === "windows" ? "⊞" : item.key === "macos" ? "●" : item.key === "linux" ? "◈" : item.key === "android" ? "●" : ""}</div><h3>{item.name}</h3><p>{item.note}</p><span className="platform-app-arrow" aria-hidden="true">↗</span></a>)}</div></section>
+    <section className="platform-how platform-all-how"><div className="platform-section-heading platform-reveal"><p className="blog-eyebrow"><span/> GET CONNECTED</p><h2>Three quick steps.<br/>A better routine.</h2></div><div className="platform-steps">{content.steps.map((step,index)=><article className="platform-step platform-reveal" key={step.title}><span>0{index+1}</span><h3>{step.title}</h3><p>{step.text}</p></article>)}</div></section>
     <section className="platform-final"><p className="blog-eyebrow"><span/> YOUR CONNECTION, YOUR CHOICE</p><h2>Privacy that fits<br/><span>your everyday.</span></h2><p>Find the right app, choose your plan, and connect with confidence.</p><a href="/plans">Explore plans <span aria-hidden="true">↗</span></a></section><footer className="feature-page-footer"><a className="feature-footer-brand" href="/#home"><span className="vpn-brand-icon" aria-hidden="true">T</span> Traverse</a><p>Find the right app for the way you connect.</p><a href="/faqs">Visit FAQs <span aria-hidden="true">↗</span></a></footer>
   </section>;
 

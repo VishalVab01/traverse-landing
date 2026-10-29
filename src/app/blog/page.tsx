@@ -2,13 +2,22 @@ import type { Metadata } from "next";
 import SiteHeader from "../site-header";
 import BlogFeed from "./blog-feed";
 import BlogMotion from "./blog-motion";
+import { client } from "../../../tina/__generated__/client";
+import fallback from "../../../content/blog/blog.json";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Traverse Journal — Travel, Privacy & VPN Guides",
   description: "Practical guides to safer browsing, public Wi-Fi, and staying connected wherever you travel.",
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  let content: typeof fallback = fallback;
+  if (process.env.NODE_ENV === "development" || (process.env.NEXT_PUBLIC_TINA_CLIENT_ID && process.env.TINA_TOKEN)) {
+    const result = await client.queries.blogPage({ relativePath: "blog.json" }, { fetchOptions: { cache: "no-store" } });
+    content = result.data.blogPage as typeof fallback;
+  }
   return <main className="blog-page">
     <SiteHeader />
     <BlogMotion />
@@ -22,7 +31,7 @@ export default function BlogPage() {
       </div>
       <div className="blog-hero-index" aria-hidden="true">01 — 06 <i /></div>
     </section>
-    <BlogFeed />
+    <BlogFeed content={content} />
     <section className="blog-newsletter" id="newsletter">
       <div className="blog-newsletter-mark" aria-hidden="true">T<span>.</span></div>
       <div><p className="blog-eyebrow"><span /> THE TRAVERSE DISPATCH</p><h2>Good internet habits,<br />delivered occasionally.</h2><p>Get practical privacy tips and thoughtful reads for wherever you connect.</p></div>

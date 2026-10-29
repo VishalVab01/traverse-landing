@@ -1,0 +1,155 @@
+{
+  "plans": [
+    {
+      "name": "Weekly Plan",
+      "price": "$1.49",
+      "interval": "/week",
+      "summary": "Perfect for short trips & quick security",
+      "savings": "",
+      "features": [
+        "Costs $6 monthly",
+        "Billed every week",
+        "All premium features included"
+      ],
+      "cta": "Get Weekly"
+    },
+    {
+      "name": "Monthly Plan",
+      "price": "$3.99",
+      "interval": "/month",
+      "summary": "Flexible, month to month privacy",
+      "savings": "Save 33%",
+      "features": [
+        "Save 33% compared to weekly billing",
+        "Billed every month",
+        "All premium features included"
+      ],
+      "cta": "Get Monthly"
+    },
+    {
+      "name": "Yearly Plan",
+      "price": "$1.99",
+      "interval": "/month",
+      "summary": "Maximum savings for year-round security",
+      "savings": "Save 67%",
+      "features": [
+        "Billed $23.88 Upfront",
+        "Save 50% vs the monthly plan",
+        "Save 67% vs the weekly plan"
+      ],
+      "cta": "Get Yearly",
+      "popular": true
+    }
+  ],
+  "addOns": [
+    {
+      "title": "Military Grade Encryption",
+      "description": "AES-256 bit encryption ensures your private data is unreadable to hackers and ISPs"
+    },
+    {
+      "title": "Strict No-Logs Policy",
+      "description": "What you do online is your business. We do not track, collect, or share your browsing history."
+    },
+    {
+      "title": "Unlimited Bandwidth",
+      "description": "No data caps. Stream, game, and browse as much as you want without any speed throttling"
+    },
+    {
+      "title": "Ad & Tracker Blocker",
+      "description": "Browse cleanly. Traverse VPN automatically blocks annoying ads and malicious trackers before they load"
+    },
+    {
+      "title": "Anti Malware Protection",
+      "description": "Automatically blocks access to known malicious websites and phishing links."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "@TraverseVPN is completely ad-free, has a strict no-logs policy, and delivers amazing speeds. Highly recommending it to anyone looking for an extremely secure and private VPN.",
+      "author": "@Liam_TechSec (London, UK)"
+    },
+    {
+      "quote": "Traverse VPN has genuinely earned my trust. It has never been more important to freely, privately, and securely access the internet than now. Set up was an absolute breeze.",
+      "author": "@SarahJ_88 (Toronto, Canada)"
+    },
+    {
+      "quote": "Wanted to thank you for the outstanding service. I have used many VPN services over the years, but the speed and reliability of the Traverse VPN app surprised me instantly. It's World Class.",
+      "author": "@Mark_DevOps (Austin, USA)"
+    }
+  ],
+  "faqItems": [
+    {
+      "question": "Can I try Traverse VPN for free?",
+      "answer": "Traverse VPN is a 100% premium service, so we do not offer a free plan. Free VPNs often sell your data or restrict your speeds. Instead, we invest in high-speed servers and military-grade encryption to guarantee your privacy."
+    },
+    {
+      "question": "How much does Traverse VPN cost?",
+      "answer": "Weekly access is $1.49 per week, monthly access is $3.99 per month, and the yearly plan is $1.99 per month billed at $23.88 upfront."
+    },
+    {
+      "question": "Can I get a VPN for just a month?",
+      "answer": "Yes. The Monthly Plan gives you flexible month-to-month privacy without a long-term commitment."
+    },
+    {
+      "question": "Which Traverse VPN plan has the best value for money?",
+      "answer": "The Yearly Plan offers the maximum savings for year-round security, while the Weekly Plan is designed for short trips and quick protection."
+    },
+    {
+      "question": "Why should I pay for a Traverse VPN subscription instead of using a free app?",
+      "answer": "Free VPNs often sell browsing data or restrict speed. A premium plan supports high-speed servers, strong encryption, and a more reliable private connection."
+    },
+    {
+      "question": "How do I buy a Traverse VPN subscription?",
+      "answer": "Choose a plan above and follow the secure checkout flow to get started."
+    },
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "Payment options are shown during checkout and may vary by platform or region."
+    },
+    {
+      "question": "Can I switch or upgrade my plan whenever I want to?",
+      "answer": "Plan changes depend on where your subscription was purchased. Use the account or store controls available on your device."
+    },
+    {
+      "question": "What if I change my mind and want to cancel?",
+      "answer": "You can manage cancellation through the store or account where you subscribed. Review the current refund policy for details."
+    }
+  ],
+  "coreFeatures": [
+    {
+      "index": "01",
+      "title": "Worldwide servers",
+      "description": "Choose a fast route through Traverse’s global network.",
+      "detail": "10 HIGH-SPEED SERVERS",
+      "visual": "servers"
+    },
+    {
+      "index": "02",
+      "title": "Automatic Kill Switch",
+      "description": "Stops traffic if the VPN drops.",
+      "detail": "LEAK SAFEGUARD",
+      "visual": "kill-switch"
+    },
+    {
+      "index": "03",
+      "title": "Multiple devices",
+      "description": "Protect multiple devices with one account.",
+      "detail": "MULTI-DEVICE",
+      "visual": "devices"
+    },
+    {
+      "index": "04",
+      "title": "Wi-Fi Protection",
+      "description": "Add protection on café, airport, and hotel Wi-Fi.",
+      "detail": "PUBLIC WI-FI",
+      "visual": "wifi"
+    },
+    {
+      "index": "05",
+      "title": "Split Tunneling",
+      "description": "Choose which apps use the encrypted VPN tunnel.",
+      "detail": "APP LEVEL CONTROL",
+      "visual": "split"
+    }
+  ]
+}

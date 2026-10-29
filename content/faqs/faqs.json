@@ -1,0 +1,95 @@
+{
+  "categories": [
+    "About Traverse",
+    "Basics",
+    "Privacy & Security",
+    "Streaming & Netflix",
+    "Gaming & Speed",
+    "Legal",
+    "Free VPN Vs Paid",
+    "Setup & Devices",
+    "Billing & Support"
+  ],
+  "questions": [
+    {
+      "category": "About Traverse",
+      "question": "What is Traverse VPN?",
+      "answer": "Traverse VPN is a fast and unlimited VPN app built to protect your privacy with strong encryption, leak protection, and simple one‑tap connection on your devices."
+    },
+    {
+      "category": "About Traverse",
+      "question": "How is Traverse VPN different from other VPNs?",
+      "answer": "Traverse VPN combines triple‑layer encryption, privacy‑focused AI chat, link‑scam scanning, and VPN leak protection in one app, so you get security, privacy, and usability together instead of just a basic VPN tunnel."
+    },
+    {
+      "category": "Privacy & Security",
+      "question": "Does Traverse VPN have a no‑logs policy?",
+      "answer": "Traverse VPN is designed as a strict no‑logs VPN, meaning we do not record your VPN browsing activity or VPN traffic content that could be used to build a profile of what you do online. Review the current privacy policy for details."
+    },
+    {
+      "category": "Setup & Devices",
+      "question": "Which platforms and devices does Traverse VPN support?",
+      "answer": "Traverse VPN is available on iPhone, iPad, Mac with Apple silicon, and other Apple devices running recent versions of iOS, iPadOS, macOS, and visionOS. Check the current app listings for supported devices and versions."
+    },
+    {
+      "category": "Basics",
+      "question": "Is there any data cap or bandwidth limit with Traverse VPN?",
+      "answer": "Traverse VPN is marketed as Fast & Unlimited, meaning there is no fixed cap on data transfer or bandwidth inside the app's normal usage limits."
+    },
+    {
+      "category": "Privacy & Security",
+      "question": "What extra privacy features does Traverse VPN include?",
+      "answer": "Traverse VPN includes privacy‑leak protection (DNS, WebRTC, and IP leak safeguards), digital fingerprint protection against trackers, and an AI chat that is designed not to be used for training the model, giving you an extra layer of privacy inside the app."
+    },
+    {
+      "category": "Privacy & Security",
+      "question": "Can Traverse VPN help me spot scams and unsafe links?",
+      "answer": "Yes. The app can scan links for scams and suspicious content, helping you avoid phishing or malicious pages before you open them."
+    },
+    {
+      "category": "Billing & Support",
+      "question": "Does Traverse VPN include 24/7 support?",
+      "answer": "For help with setup, billing, or troubleshooting, use the support channels listed in the app or on the official support page."
+    },
+    {
+      "category": "Free VPN Vs Paid",
+      "question": "Is Traverse VPN free or paid?",
+      "answer": "Traverse VPN can be downloaded for free and offers in‑app purchases for premium plans (weekly, monthly, and yearly) so users can upgrade for full access and features."
+    },
+    {
+      "category": "About Traverse",
+      "question": "Who is behind Traverse VPN?",
+      "answer": "Traverse VPN is developed and published by WEB 3 TASK PRIVATE LIMITED, as listed on the official app store pages."
+    },
+    {
+      "category": "Basics",
+      "question": "What does a VPN do?",
+      "answer": "A VPN (Virtual Private Network) creates a secure, encrypted tunnel between your device and the internet. This hides your IP address, helps keep your identity private, and protects your data from eavesdropping."
+    },
+    {
+      "category": "Streaming & Netflix",
+      "question": "Can I use Traverse VPN for streaming?",
+      "answer": "A VPN can help protect your connection while streaming. Access to specific platforms and catalogues varies by region and service, so check the platform's current terms and availability."
+    },
+    {
+      "category": "Gaming & Speed",
+      "question": "Will a VPN slow down my connection?",
+      "answer": "Connection speed depends on your network, device, server location, and the service you are using. Connecting to a nearby server may help reduce added latency."
+    },
+    {
+      "category": "Legal",
+      "question": "Is it legal to use a VPN?",
+      "answer": "VPN rules vary by country and use case. Check local laws and the terms of services you access while travelling or browsing."
+    },
+    {
+      "category": "Setup & Devices",
+      "question": "How do I install Traverse VPN?",
+      "answer": "Download Traverse VPN from the official app listing for your device, open the app, and follow the on-screen setup steps to connect."
+    },
+    {
+      "category": "Billing & Support",
+      "question": "How much does Traverse VPN cost?",
+      "answer": "Traverse VPN offers weekly, monthly, and yearly plans. Review the current prices and renewal terms in the app or on the plans page before subscribing."
+    }
+  ]
+}

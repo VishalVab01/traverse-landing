@@ -27,6 +27,23 @@ const listOfStrings = (name: string, label: string) => ({
   list: true,
 });
 
+const objectList = (name: string, label: string, fields: any[]) => ({
+  type: "object" as const,
+  name,
+  label,
+  list: true,
+  fields,
+});
+
+const pageCollection = (name: string, label: string, path: string, slug: string, fields: any[]) => ({
+  name,
+  label,
+  path,
+  format: "json" as const,
+  ui: { filename: { readonly: true, slugify: () => slug } },
+  fields,
+});
+
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
@@ -139,6 +156,49 @@ export default defineConfig({
               { type: "object", name: "primaryCta", label: "Primary button", fields: [stringField("label", "Label"), stringField("href", "URL")] },
               { type: "object", name: "secondaryCta", label: "Secondary button", fields: [stringField("label", "Label"), stringField("href", "URL")] }],
           },
+        ],
+      },
+      pageCollection("featuresPage", "Features page", "content/features", "features", [
+        objectList("highlights", "Highlights", [stringField("number", "Number"), stringField("title", "Title"), textField("text", "Description")]),
+        objectList("features", "Feature stories", [stringField("number", "Number"), stringField("tag", "Label"), stringField("title", "Title"), imageField("image", "Image"), stringField("alt", "Image description"), stringField("imageLabel", "Image label"), textField("copy", "Description"), listOfStrings("points", "Key points")]),
+        objectList("safeguards", "Protection details", [stringField("title", "Title"), textField("text", "Description"), listOfStrings("points", "Key points")]),
+      ]),
+      pageCollection("plansPage", "Plans page", "content/plans", "plans", [
+        objectList("coreFeatures", "Core features", [stringField("index", "Number"), stringField("title", "Title"), textField("description", "Description"), stringField("detail", "Detail"), { type: "string", name: "visual", label: "Visual", options: ["servers", "kill-switch", "devices", "wifi", "split"] }]),
+        objectList("plans", "Pricing plans", [stringField("name", "Name"), stringField("price", "Price"), stringField("interval", "Billing interval"), textField("summary", "Description"), stringField("savings", "Savings label", false), listOfStrings("features", "Included features"), stringField("cta", "Button label"), { type: "boolean", name: "popular", label: "Most popular" }]),
+        objectList("addOns", "Included features", [stringField("title", "Title"), textField("description", "Description")]),
+        objectList("testimonials", "Testimonials", [textField("quote", "Quote"), stringField("author", "Attribution")]),
+        objectList("faqItems", "Pricing questions", [stringField("question", "Question"), textField("answer", "Answer")]),
+      ]),
+      pageCollection("enterprisePage", "Enterprise page", "content/enterprise", "enterprise", [
+        objectList("audiences", "Who it is for", [stringField("title", "Audience"), textField("text", "Description")]),
+        objectList("expectations", "Infrastructure capabilities", [stringField("title", "Title"), textField("text", "Description")]),
+        objectList("support", "Implementation support", [stringField("title", "Title"), textField("text", "Description")]),
+        objectList("questions", "Enterprise questions", [stringField("question", "Question"), textField("answer", "Answer")]),
+      ]),
+      pageCollection("faqsPage", "FAQs page", "content/faqs", "faqs", [
+        listOfStrings("categories", "Topics"),
+        objectList("questions", "Questions and answers", [stringField("category", "Topic"), stringField("question", "Question"), textField("answer", "Answer")]),
+      ]),
+      pageCollection("blogPage", "Blog page", "content/blog", "blog", [
+        listOfStrings("categories", "Story categories"),
+        objectList("stories", "Stories", [stringField("title", "Title"), textField("excerpt", "Excerpt"), stringField("category", "Category"), stringField("date", "Date"), stringField("read", "Reading time"), stringField("author", "Author"), imageField("image", "Image"), stringField("alt", "Image description"), stringField("number", "Index")]),
+      ]),
+      pageCollection("downloadPage", "Download page", "content/download", "download", [
+        objectList("platforms", "Platform links", [stringField("name", "Name"), stringField("key", "Platform key"), stringField("family", "Device type"), stringField("href", "Page URL"), stringField("note", "Device description")]),
+        objectList("steps", "Getting started steps", [stringField("title", "Title"), textField("text", "Description")]),
+      ]),
+      {
+        name: "platformPage",
+        label: "Download platform pages",
+        path: "content/platforms",
+        format: "json",
+        fields: [
+          stringField("key", "Platform key"), stringField("name", "Platform name"), stringField("family", "Device type"), stringField("title", "Headline"), textField("lead", "Intro"), textField("description", "Overview"), imageField("image", "Hero image"), stringField("imageAlt", "Image description"),
+          objectList("highlights", "Highlights", [stringField("title", "Title"), textField("text", "Description")]),
+          objectList("steps", "Setup steps", [stringField("title", "Title"), textField("text", "Description")]),
+          stringField("detailsTitle", "Details heading"), objectList("details", "Feature details", [stringField("title", "Title"), textField("text", "Description")]),
+          listOfStrings("compatibility", "Compatibility"), textField("note", "Compatibility note"),
         ],
       },
     ],
